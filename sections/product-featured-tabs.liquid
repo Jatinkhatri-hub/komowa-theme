@@ -1,0 +1,79 @@
+{% if section.settings.product_feature_image != blank %}
+  <div class="section-spacing bordered-section">
+    <div data-section-id="{{ section.id }}" data-section-type="product-featured-tabs">
+      <div class="container">
+        {% if section.settings.heading != blank %}
+          <div class="prose text-center">
+            <h2 class="h2">{{ section.settings.heading }}</h2>
+          </div>
+        {% endif %}
+        <div class="product--featured_grid">
+          <div class="product--featured_col featured_col_tabs">
+            {% for metaobject in product.metafields.custom.product_tab_features.value %}
+              <a
+                href="#"
+                class="oerd-{{ forloop.index }} tab--item {% if forloop.index == 1 %}active{% endif %}"
+                data-index="{{ forloop.index }}"
+              >
+                {{ metaobject.tab.value }}
+              </a>
+            {%- endfor %}
+          </div>
+          <div class="product--featured_col featured_col_image">
+            {% if section.settings.product_feature_image != blank %}
+              <div class="product--tabs_imageWrapper">
+                <img src="{{ section.settings.product_feature_image | img_url:'master' }}">
+              </div>
+            {% endif %}
+          </div>
+          <div class="product--featured_col featured_col_content">
+            {% for metaobject in product.metafields.custom.product_tab_features.value %}
+              {% assign text_content = metaobject.tab_content.value | split: '"value"=>"' | last %}
+              <div
+                class="oerd-{{ forloop.index }} tab--content {% if forloop.index == 1 %}active{% endif %}"
+                data-index="{{ forloop.index }}"
+              >
+                {% if metaobject.tab_content_heading != blank %}
+                  <div class="text-heading">
+                    {{ metaobject.tab_content_heading.value }}
+                  </div>
+                {% endif %}
+                {% if text_content != blank %}
+                  <div class="text-content">
+                    {{ text_content | split: '"' | first }}
+                  </div>
+                {% endif %}
+              </div>
+            {%- endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}
+{% schema %}
+{
+  "name": "Featured product tabs",
+  "settings": [
+    {
+      "type":"header",
+      "content":"Featured section settings"
+    },
+    {
+      "type":"text",
+      "label":"Heading",
+      "id":"heading"
+    },
+    {
+      "type":"image_picker",
+      "label":"Product feature image",
+      "id":"product_feature_image"
+    }
+  ],
+  "presets":[
+    {
+      "name":"Featured product tabs"
+    }
+  ]
+}
+{% endschema %}

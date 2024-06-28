@@ -1,0 +1,50 @@
+{% comment %}
+  if combine_pretext is false, the text before the first <h6> will be shown above all tabs, otherwise added to the first tab
+{% endcomment %}
+
+{% assign description = product.description | strip %}
+
+{% assign combine_pretext = false %}
+
+{% if description contains '<h3>' %}
+  {% assign tab_heads = '' %}
+  {% assign tab_texts = '' %}
+  {% assign pretext = '' %}
+  {% assign chunks = description | strip | split: '<h3>' %}
+
+  {% for c in chunks %}
+    {% if c contains '</h3>' %}
+      {% assign chunk = c | split: '</h3>' %}
+      {% assign tab_heads = tab_heads | append: ',,' | append: chunk.first %}
+      {% assign tab_texts = tab_texts | append: ',,' %}
+      {% if pretext != blank and combine_pretext %}
+        {% assign tab_texts = tab_texts | append: pretext | append: '<br>' %}
+        {% assign pretext = '' %}
+      {% endif %}
+      {% assign tab_texts = tab_texts | append: chunk.last %}
+    {% elsif forloop.first %}
+      {% assign pretext = c %}
+    {% endif %}
+  {% endfor %}
+
+  {% assign tab_heads = tab_heads | remove_first: ',,' | split: ',,' %}
+  {% assign tab_texts = tab_texts | remove_first: ',,' | split: ',,' %}
+  <div>
+    {% if pretext != blank and combine_pretext == false %}
+      <span class="pretext">{{ pretext }}</span>
+    {% endif %}
+    {% assign blocks = tab_heads | size  %}
+    <div class="product-info-accordions">
+      {% for i in (0..blocks) %}
+        {% if tab_heads[i] != blank %}
+          <div class="acc_content__wrapper">
+            <div class="acc_heading">{{ tab_heads[i] | strip_html }}</div>
+            <div class="acc_content">{{ tab_texts[i]}}</div>   
+          </div>
+       {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+{% else %}
+  {{ product.description }}
+{% endif %}

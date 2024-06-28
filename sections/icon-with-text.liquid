@@ -1,0 +1,69 @@
+<div class="icon-with-text" data-section-id="{{ section.id }}" style="--background-color:{{ section.settings.background_color }};--text-color:{{ section.settings.text_color }};">
+  <!-- <div class="container"> -->
+    <div class="icon-row" style="--columns:{{ section.blocks.size }};">
+      {% for block in section.blocks %}
+        {% assign icon = block.settings.icon %}
+        {% assign text = block.settings.text %}
+        
+        {% if icon != blank or text != blank %}
+          <div class="icon-col">
+            <div class="content--wrapper">
+                <span class="icon-wrapper">
+                  {{ icon }}
+                </span>
+                <span class="text-wrapper">
+                  {{ text }}
+                </span>
+            </div>
+          </div>
+        {% endif %}
+        
+      {% endfor %}
+    </div>
+  <!-- </div> -->
+</div>
+{% schema %}
+  {
+    "name": "Icon with text",
+    "max_blocks": 4,
+    "settings": [
+      {
+        "type":"header",
+        "content":"Color settings"
+      },
+      {
+        "type":"color",
+        "label":"Background color",
+        "id":"background_color"
+      },
+      {
+        "type":"color",
+        "label":"Background color",
+        "id":"text_color"
+      }
+    ],
+    "blocks":[
+      {
+        "type":"icon_text",
+        "name":"Icon with text",
+        "settings":[
+          {
+            "type":"textarea",
+            "label":"Icon",
+            "id":"icon"
+          },
+          {
+            "type":"text",
+            "label":"Text",
+            "id":"text"
+          }
+        ]
+      }
+    ],
+    "presets":[
+      {
+        "name":"Icon with text"
+      }
+    ]
+  }
+{% endschema %}

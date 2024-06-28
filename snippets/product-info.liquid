@@ -1,0 +1,647 @@
+{%- comment -%}
+----------------------------------------------------------------------------------------------------------------------
+PRODUCT INFO
+----------------------------------------------------------------------------------------------------------------------
+
+This snippet renders all the blocks of a given product. It uses the blocks of the section currently in use (there is
+no need to manually pass the section as it is globally available)
+
+********************************************
+Supported variables
+********************************************
+
+* product: the product on which to render the information (if blank, it renders placeholder information)
+* center_basic_info: if true, the basic information (product title, vendor, price) are centered on mobile
+* has_content_below_gallery: if true, the product has extra information show below the gallery
+* allow_blocks: a list of blocks name to include. If none is passed, assumes to show all the blocks
+* update_url: if set to true, the URL on the page is updated when the variant changes (for best experience, this should
+              be only used on the product page for the main product
+{%- endcomment -%}
+
+{%- capture product_form_id -%}product-form-{{ product.id }}-{{ section.id }}{%- endcapture -%}
+
+<safe-sticky class="product-info {% if center_basic_info %}product-info--center{% endif %}">
+  <div class="product-info__block-list">
+    {%- liquid
+      assign inside_block_group_context = false
+      assign current_block_group_name = ''
+
+      if allow_blocks != blank
+        assign filtered_blocks = '' | split: ''
+
+        for block in section.blocks
+          if allow_blocks contains block.type
+            assign block_as_arr = block | sort
+            assign filtered_blocks = filtered_blocks | concat: block_as_arr
+          endif
+        endfor
+      else
+        assign filtered_blocks = section.blocks
+      endif
+    -%}
+
+    {%- for block in filtered_blocks -%}
+      {%- liquid
+        # Filter the blocks (if allow_blocks is set)
+        if allow_blocks
+          unless allow_blocks contains block.type
+            continue
+          endunless
+        endif
+
+        assign next_block_index = forloop.index0 | plus: 1
+        assign next_block = filtered_blocks[next_block_index]
+
+        if block.settings.show_below_gallery
+          continue
+        endif
+
+        comment
+        You can use your own condition to create smart grouping. When two or more blocks match the condition, they are
+        automatically grouped by a div that will take the desired class. This can even work for more than 2 elements
+        (for instance if you specify accordion follow by an accordion). The theme takes care of properly opening and
+        closing the group for proper HTML. In order to make it work, you need to create one condition explaining when
+        to enter into the group, and you need to indicate a block_group_class and block_group_name. Most of the time,
+        the two will be identical. However, the block_group_name must be unique. This means that as long as the block_group_name
+        stays the same, then another group will not be created as long as the conditions match.
+        endcomment
+
+        assign allow_block_group = true
+
+        if block.type == 'price' and block.settings.show_taxes_notice == false and next_block.type == 'rating'
+          assign block_group_class = 'text-with-rating'
+          assign block_group_name = 'text-with-rating'
+        elsif block.type == 'rating' and next_block.type == 'price' and next_block.settings.show_taxes_notice == false
+          assign block_group_class = 'text-with-rating'
+          assign block_group_name = 'text-with-rating'
+        elsif block.type == 'sku' and next_block.type == 'rating'
+          assign block_group_class = 'text-with-rating'
+          assign block_group_name = 'text-with-rating'
+        elsif block.type == 'rating' and next_block.type == 'sku'
+          assign block_group_class = 'text-with-rating'
+          assign block_group_name = 'text-with-rating'
+        elsif block.type == 'accordion' and next_block.type == 'accordion' and next_block.settings.show_below_gallery != true
+          assign block_group_class = 'accordion-group'
+          assign block_group_name = 'accordion-group'
+        elsif block.type == 'accordion' and next_block.type == 'description' and product.description != blank and next_block.settings.collapse_content and next_block.settings.show_below_gallery != true
+          assign block_group_class = 'accordion-group'
+          assign block_group_name = 'accordion-group'
+        elsif block.type == 'description' and product.description != blank and block.settings.collapse_content and next_block.type == 'accordion' and next_block.settings.show_below_gallery != true
+          assign block_group_class = 'accordion-group'
+          assign block_group_name = 'accordion-group'
+        elsif block.type == 'feature_with_icon' and next_block.type == 'feature_with_icon'
+          assign block_group_class = 'feature-badge-list'
+          assign block_group_name = 'feature-badge-list'
+        else
+          assign allow_block_group = false
+          assign block_group_class = ''
+          assign current_block_group_name = ''
+        endif
+
+        if allow_block_group
+          assign new_block_group_name = block_group_name
+
+          if inside_block_group_context == true and new_block_group_name != current_block_group_name
+            assign allow_block_group = false
+          else
+            assign current_block_group_name = new_block_group_name
+          endif
+        endif
+      -%}
+
+      {%- capture block_content -%}
+        {%- case block.type -%}
+          {%- when '@app' -%}
+            {%- render block -%}
+
+          {%- when 'vendor' -%}
+            {%- if product != blank -%}
+              {%- render 'vendor' with product.vendor, class: 'h6 link-faded' -%}
+            {%- else -%}
+              {%- assign placeholder_vendor = 'general.on_boarding.product_vendor' | t -%}
+              {%- render 'vendor' with placeholder_vendor, class: 'h6 link-faded' -%}
+            {%- endif -%}
+
+          {%- when 'title' -%}
+            {%- if product != blank -%}
+              {%- assign product_title = product.title -%}
+            {%- else -%}
+              {%- assign product_title = 'general.on_boarding.product_title' | t -%}
+            {%- endif -%}
+
+            {%- if request.page_type == 'product' and update_url -%}
+              <h1 class="product-title product-title-desktop {{ block.settings.heading_tag }}">
+                {{- product_title -}}
+              </h1>
+            {%- else -%}
+              <h2 class="product-title product-title-desktop {{ block.settings.heading_tag }}">
+                <a href="{{ product.url }}">{{ product_title }}</a>
+              </h2>
+            {%- endif -%}
+
+          {%- when 'sku' -%}
+            <variant-sku class="variant-sku text-sm text-subdued" form="{{ product_form_id }}" {% if product != blank and product.selected_or_first_available_variant.sku == blank %}hidden{% endif %}>
+              {{- 'product.general.sku' | t }} {% if product != blank -%}{{ product.selected_or_first_available_variant.sku -}}{%- else -%}SK-123AB{%- endif -%}
+            </variant-sku>
+
+          {%- when 'badges' -%}
+            {%- if product != blank -%}
+              {%- render 'product-badges', product: product, variant: product.selected_or_first_available_variant, types: 'custom,discount', form_id: product_form_id -%}
+            {%- endif -%}
+          {%- when 'product-tabs' -%}
+           {% render "product-tabs",product:product %}
+          {%- when 'price' -%}
+            <div class="v-stack">
+              {%- render 'price-list', product: product, variant: product.selected_or_first_available_variant, context: 'product', form_id: product_form_id -%}
+
+              {%- if block.settings.show_taxes_notice -%}
+                <p class="text-sm text-subdued">
+                  {%- if cart.taxes_included -%}
+                    {{ 'product.general.taxes_included' | t }}
+                  {%- else -%}
+                    {{ 'product.general.taxes_excluded' | t }}
+                  {%- endif -%}
+
+                  {%- if shop.shipping_policy.body != blank -%}
+                    {{ 'product.general.shipping_policy_html' | t: link: shop.shipping_policy.url }}
+                  {%- endif -%}
+                </p>
+              {%- endif -%}
+            </div>
+          
+
+          {%- when 'payment_terms' -%}
+            {%- if product != blank -%}
+              <payment-terms class="payment-terms" form="{{ product_form_id }}">
+                {%- capture product_installment_form_id -%}product-installment-form-{{ section.id }}-{{ product.id }}{%- endcapture -%}
+              
+
+                {%- form 'product', product, id: product_installment_form_id, class: 'no_bold_options' -%}
+                  <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+                  {{- form | payment_terms -}}
+                {%- endform -%}
+              </payment-terms>
+             
+            {%- endif -%}
+          
+          
+          
+          {%- when 'rating' -%}
+            {%- if product != blank -%}
+              {%- render 'product-rating', product: product, show_empty: block.settings.show_empty, display_mode: block.settings.rating_mode, show_placeholder: false -%}
+            {%- else -%}
+              {%- render 'product-rating', show_placeholder: true -%}
+            {%- endif -%}
+
+          {%- when 'separator' -%}
+            <hr>
+
+          {%- when 'description' -%}
+            {%- if product == blank -%}
+              {%- assign product_description = 'general.on_boarding.product_description' | t -%}
+            {%- else -%}
+              {%- assign product_description = product.description -%}
+            {%- endif -%}
+
+            {%- if product_description != blank -%}
+              {%- if block.settings.collapse_content -%}
+                {%- assign accordion_title = 'product.general.description' | t -%}
+                {%- render 'accordion', title: accordion_title, content: product_description, prose_content: true, block: block -%}
+              {%- else -%}
+                <div class="prose">
+                  {{- product_description -}}
+                </div>
+              {%- endif -%}
+            {%- endif -%}
+
+          {%- when 'variant_picker' -%}
+            {%- if product != blank -%}
+              {%- render 'variant-picker',
+                  product: product,
+                  form_id: product_form_id,
+                  update_url: update_url,
+                  hide_sold_out_variants: block.settings.hide_sold_out_variants,
+                  selector_type: block.settings.selector_type,
+                  color_selector_type: block.settings.color_selector_type,
+                  size_chart_page: block.settings.size_chart_page -%}
+            {%- endif -%}
+
+          {%- when 'product_variations' -%}
+            {%- liquid
+              assign contains_product = false
+
+              for product_variation in block.settings.products
+                if product_variation == product
+                  assign contains_product = true
+                endif
+              endfor
+            -%}
+
+            {%- if contains_product -%}
+              {%- comment -%}
+                IMPLEMENTATION NOTE: this feature allows to connect different products on the same page. It is therefore
+                visually similar to a variant picker, although it does not share the functionality
+              {%- endcomment -%}
+
+              <div class="variant-picker v-stack gap-4">
+                <div class="variant-picker__option v-stack gap-2">
+                  {%- assign metafield_parts = block.settings.option_value_metafield | split: '.' -%}
+                  {%- assign metafield_namespace = metafield_parts | first -%}
+                  {%- assign metafield_key = metafield_parts | last -%}
+
+                  {%- if block.settings.option_name != blank -%}
+                    <div class="h-stack gap-1">
+                      <p class="text-subdued">{{ block.settings.option_name | escape }}:</p>
+                      <span>{{ product.metafields[metafield_namespace][metafield_key].value | escape }}</span>
+                    </div>
+                  {%- endif -%}
+
+                  <div class="variant-picker__option-values h-stack gap-2.5 wrap">
+                    {%- liquid
+                      for product_variation in block.settings.products
+                        assign value = product_variation.metafields[metafield_namespace][metafield_key].value
+
+                        if product_variation == product
+                          assign selected = true
+                        else
+                          assign selected = false
+                        endif
+
+                        case block.settings.color_selector_type
+                          when 'color'
+                            render 'swatch' with 'color', href: product_variation.url, value: value, selected: selected
+
+                          when 'variant'
+                            render 'swatch' with 'media', href: product_variation.url, value: value, media: product_variation.featured_media, selected: selected
+
+                          when 'block'
+                            render 'swatch' with 'block', href: product_variation.url, value: value, selected: selected
+
+                          when 'block_swatch'
+                            render 'swatch' with 'block', href: product_variation.url, value: value, selected: selected, show_color: true
+                        endcase
+                      endfor
+                    -%}
+                  </div>
+                </div>
+              </div>
+            {%- endif -%}
+
+          {%- when 'line_item_property' -%}
+            {%- if block.settings.label != blank -%}
+              {%- capture name -%}properties[{{ block.settings.label | escape }}]{%- endcapture -%}
+
+              <div class="line-item-property">
+                {%- liquid
+                  if block.settings.type == 'text'
+                    if block.settings.allow_long_text
+                      render 'input', label: block.settings.label, name: name, form: product_form_id, multiline: 4, required: block.settings.required, maxlength: block.settings.max_length
+                    else
+                      render 'input', type: 'text', label: block.settings.label, name: name, form: product_form_id, required: block.settings.required, maxlength: block.settings.max_length
+                    endif
+                  elsif block.settings.type == 'checkbox'
+                    render 'checkbox', label: block.settings.label, name: name, form: product_form_id, value: block.settings.checkbox_value, required: block.settings.required
+                  elsif block.settings.type == 'dropdown' and block.settings.select_values != blank
+                    assign option_values = block.settings.select_values | split: ','
+                    render 'select', label: block.settings.label, option_values: option_values, show_empty_value: true, name: name, form: product_form_id, required: block.settings.required
+                  endif
+                -%}
+              </div>
+            {%- endif -%}
+          {%- when 'quantity_selector' -%}
+            {%- if product.available -%}
+              {% render 'quantity-selector', variant: product.selected_or_first_available_variant, form: product_form_id %}
+            {%- endif -%}
+
+          {%- when 'inventory' -%}
+            {%- render 'inventory',
+                product: product,
+                show_in_stock_quantity: block.settings.show_in_stock_quantity,
+                show_progress_bar: block.settings.show_progress_bar,
+                progress_bar_max_value: block.settings.progress_bar_max_value,
+                low_threshold: block.settings.low_inventory_threshold,
+                form_id: product_form_id
+            -%}
+
+          {%- when 'buy_buttons' -%}
+            {%- render 'buy-buttons',
+                product: product,
+                form_id: product_form_id,
+                show_payment_button: block.settings.show_payment_button,
+                show_gift_card_recipient: block.settings.show_gift_card_recipient,
+                atc_button_background: block.settings.atc_button_background,
+                atc_button_text_color: block.settings.atc_button_text_color,
+                payment_button_background: block.settings.payment_button_background,
+                payment_button_text_color: block.settings.payment_button_text_color
+            -%}
+
+          {%- when 'pickup_availability' -%}
+            {%- if product != blank -%}
+              {%- render 'pickup-availability', product_variant: product.selected_or_first_available_variant, form_id: product_form_id -%}
+            {%- endif -%}
+
+          {%- when 'offers' -%}
+            {%- assign offers_count = 0 -%}
+
+            {%- capture offers_content -%}
+              {%- for i in (1..3) -%}
+                {%- assign title_setting = 'offer_' | append: i | append: '_title' -%}
+                {%- assign content_setting = 'offer_' | append: i | append: '_content' -%}
+
+                {%- if block.settings[title_setting] != blank or block.settings[content_setting] != blank -%}
+                  <div class="product-offers__item {% unless block.settings.stack_offers %}text-center{% endunless %} snap-center">
+                    <div class="v-stack gap-2.5">
+                      {%- if block.settings[title_setting] != blank -%}
+                        <p class="h6">{{ block.settings[title_setting] }}</p>
+                      {%- endif -%}
+
+                      {%- if block.settings[content_setting] != blank -%}
+                        <div class="prose">
+                          {{- block.settings[content_setting] -}}
+                        </div>
+                      {%- endif -%}
+                    </div>
+                  </div>
+
+                  {%- assign offers_count = offers_count | plus: 1 -%}
+                {%- endif -%}
+              {%- endfor -%}
+            {%- endcapture -%}
+
+            {%- if offers_content != blank -%}
+              {%- assign carousel_id = 'product-offers-' | append: block.id -%}
+
+              <div class="product-offers border" style="{% render 'surface', background: block.settings.background, text_color: block.settings.text_color, border_color: block.settings.border_color %}">
+                <scroll-carousel id="{{ carousel_id }}" class="product-offers__list {% if block.settings.stack_offers or offers_count == 1 %}product-offers__list--stack divide-y{% else %}product-offers__list--carousel scroll-area snap-x{% endif %}">
+                  {{ offers_content }}
+                </scroll-carousel>
+
+                {%- if block.settings.stack_offers == false and offers_count > 1 -%}
+                  <carousel-navigation aria-controls="{{ carousel_id }}" class="page-dots">
+                    {%- for i in (1..offers_count) -%}
+                      <button class="tap-area" aria-current="{% if forloop.first %}true{% else %}false{% endif %}">
+                        <span class="sr-only">{{ 'general.accessibility.go_to_item' | t: index: forloop.index }}</span>
+                      </button>
+                    {%- endfor -%}
+                  </carousel-navigation>
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+
+          {%- when 'complementary_products' -%}
+            {%- unless block.settings.show_below_gallery -%}
+              {%- render 'complementary-products', product: product, block: block -%}
+            {%- endunless -%}
+
+          {%- when 'text' -%}
+            {%- if block.settings.text != blank -%}
+              <div class="prose">
+                {{- block.settings.text -}}
+              </div>
+            {%- endif -%}
+
+          {%- when 'accordion' -%}
+            {%- liquid
+              assign accordion_title = block.settings.title | default: block.settings.page.title
+              assign accordion_content = block.settings.page.content | default: block.settings.content
+
+              if accordion_title != blank and accordion_content != blank
+                render 'accordion', title: accordion_title, content: accordion_content, prose_content: true, icon: block.settings.icon, custom_icon: block.settings.custom_icon, block: block
+              endif
+            -%}
+          {%- when 'help_and_information' -%}
+              <div class="agent--section_wrapper">
+                <div class="agent--section_row">
+                  <div class="agent--section_col image__col"> 
+                    {% if block.settings.agent_image != blank %}  
+                      <div class="agent--section_avatar">
+                        <img src="{{ block.settings.agent_image | img_url:'master'}}" />
+                      </div>
+                    {% endif %}
+                  </div>
+                  <div class="agent--section_col agent--section_information">
+                    {% if block.settings.heading != blank %}
+                      <p class="heading h4">{{ block.settings.heading }}</p>
+                    {% endif %}
+                  {% if block.settings.sub_heading != blank %}
+                      <p class="subheadings">{{ block.settings.sub_heading }}</p>
+                  {% endif %}
+                  </div>
+                </div>
+                <div class="agent--button__groups">
+                  {% if block.settings.call_us_button != blank %}
+                    <a class="button button--outline" href="{{ block.settings.call_us_number }}">
+                      <span>
+                          <svg fill="#146ea8" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" stroke="#146ea8"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>phone-call</title> <path d="M18.037 6.635c-0.011-0.001-0.023-0.001-0.035-0.001-0.414 0-0.75 0.336-0.75 0.75 0 0.399 0.312 0.726 0.706 0.749l0.002 0c3.533 0.231 6.311 3.153 6.311 6.723 0 0.186-0.008 0.37-0.022 0.552l0.002-0.024c0 0.414 0.336 0.75 0.75 0.75s0.75-0.336 0.75-0.75v0c0.009-0.143 0.014-0.31 0.014-0.479 0-4.38-3.397-7.967-7.7-8.269l-0.026-0.001zM17.963 2.749c0.449 0.022 10.998 0.688 10.998 12.635 0 0.414 0.336 0.75 0.75 0.75s0.75-0.336 0.75-0.75v0c0.015-0.238 0.024-0.515 0.024-0.795 0-7.059-5.471-12.841-12.405-13.335l-0.043-0.002c-0.009-0-0.019-0.001-0.029-0.001-0.403 0-0.732 0.314-0.757 0.71l-0 0.002c-0.001 0.011-0.001 0.024-0.001 0.037 0 0.401 0.315 0.729 0.711 0.749l0.002 0zM30.637 23.15c-0.109-0.675-0.334-1.281-0.654-1.823l0.013 0.024c-0.114-0.186-0.301-0.317-0.521-0.353l-0.004-0.001-8.969-1.424c-0.035-0.006-0.076-0.009-0.117-0.009-0.207 0-0.395 0.083-0.531 0.218l0-0c-0.676 0.68-1.194 1.516-1.496 2.451l-0.012 0.044c-4.016-1.64-7.141-4.765-8.742-8.675l-0.038-0.105c0.978-0.314 1.814-0.833 2.493-1.509l-0 0c0.136-0.136 0.22-0.324 0.22-0.531 0-0.041-0.003-0.081-0.010-0.12l0.001 0.004-1.425-8.969c-0.036-0.224-0.167-0.412-0.35-0.524l-0.003-0.002c-0.505-0.301-1.094-0.522-1.724-0.626l-0.029-0.004c-0.315-0.070-0.677-0.111-1.048-0.111-0.025 0-0.050 0-0.075 0.001l0.004-0h-0.006c-3.497 0.024-6.326 2.855-6.347 6.351v0.002c0.015 12.761 10.355 23.102 23.115 23.117h0.002c3.5-0.023 6.331-2.854 6.354-6.351v-0.002c0-0.020 0-0.044 0-0.068 0-0.356-0.036-0.703-0.106-1.038l0.006 0.033zM24.383 29.076c-11.933-0.014-21.602-9.684-21.616-21.616v-0.001c0.019-2.673 2.182-4.835 4.854-4.853h0.002c0.016-0 0.036-0 0.055-0 0.272 0 0.537 0.030 0.793 0.086l-0.024-0.005c0.366 0.060 0.695 0.161 1.003 0.3l-0.025-0.010 1.302 8.202c-0.628 0.528-1.404 0.901-2.257 1.050l-0.029 0.004c-0.355 0.064-0.62 0.37-0.62 0.739 0 0.088 0.015 0.172 0.043 0.25l-0.002-0.005c1.772 5.072 5.695 8.994 10.646 10.729l0.121 0.037c0.073 0.026 0.157 0.041 0.245 0.041 0.368 0 0.674-0.265 0.737-0.615l0.001-0.005c0.153-0.882 0.526-1.658 1.061-2.295l-0.006 0.007 8.201 1.303c0.133 0.294 0.237 0.636 0.296 0.994l0.003 0.024c0.046 0.219 0.073 0.471 0.073 0.729 0 0.018-0 0.035-0 0.053l0-0.003c-0.016 2.675-2.179 4.84-4.852 4.859h-0.002z"></path> </g></svg>
+                          {{ block.settings.call_us_button }}
+                       </span>
+                    </a>
+                  {% endif %}
+                  {% if block.settings.chat_button_label != blank %}
+                    <a class="button button--outline" data-href="{{ block.settings.chat_link }}" href="{{ block.settings.chat_link }}">
+                    <span>
+                       <svg width="180px" height="180px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke=""><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M16.1267 22.1995C16.7081 22.5979 17.4463 23.0228 18.3121 23.3511C19.9904 23.9874 21.244 24.0245 21.8236 23.9917C23.1167 23.9184 23.2907 23.0987 22.5972 22.0816C21.8054 20.9202 21.0425 19.6077 21.1179 18.1551C22.306 16.3983 23 14.2788 23 12C23 5.92487 18.0751 1 12 1C5.92488 1 1.00001 5.92487 1.00001 12C1.00001 18.0751 5.92488 23 12 23C13.4578 23 14.8513 22.7159 16.1267 22.1995ZM12 3C7.02945 3 3.00001 7.02944 3.00001 12C3.00001 16.9706 7.02945 21 12 21C13.3697 21 14.6654 20.6947 15.825 20.1494C16.1635 19.9902 16.5626 20.0332 16.8594 20.261C17.3824 20.6624 18.1239 21.1407 19.0212 21.481C19.4111 21.6288 19.7674 21.7356 20.0856 21.8123C19.7533 21.2051 19.4167 20.4818 19.2616 19.8011C19.1018 19.0998 18.8622 17.8782 19.3281 17.2262C20.3808 15.7531 21 13.9503 21 12C21 7.02944 16.9706 3 12 3ZM12 14C9.76094 14 8.4671 15.169 8.10992 16.3009C7.94372 16.8276 7.38202 17.1198 6.85534 16.9536C6.32866 16.7874 6.03643 16.2257 6.20263 15.6991C6.61242 14.4005 7.59994 13.2939 8.9933 12.6382C8.37493 11.934 8.00001 11.0108 8.00001 10C8.00001 7.79086 9.79087 6 12 6C14.2092 6 16 7.79086 16 10C16 11.0108 15.6251 11.934 15.0067 12.6382C16.4001 13.2939 17.3876 14.4005 17.7974 15.6991C17.9636 16.2257 17.6714 16.7874 17.1447 16.9536C16.618 17.1198 16.0563 16.8276 15.8901 16.3009C15.5329 15.169 14.2391 14 12 14ZM10 10C10 8.89543 10.8954 8 12 8C13.1046 8 14 8.89543 14 10C14 11.1046 13.1046 12 12 12C10.8954 12 10 11.1046 10 10Z" fill="#146ea8"></path> </g></svg>
+                       {{ block.settings.chat_button_label }}
+                    </span>
+                    </a>
+                  {% endif %}
+
+                  {% if block.settings.appointment_label != blank %}
+                    <a data-fancybox data-src="#calendly" class="button button--outline" href="{{- block.settings.appointment_url -}}"  >
+                        <span> 
+                        <svg fill="#000000" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve">
+                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                        <g id="SVGRepo_iconCarrier"> <g> <g> <path d="M89.872,40.851c-13.515,0-24.511,10.995-24.511,24.511c0,13.516,10.995,24.511,24.511,24.511 c13.515,0,24.511-10.996,24.511-24.511C114.383,51.847,103.387,40.851,89.872,40.851z M89.872,73.532 c-4.506,0-8.17-3.666-8.17-8.17s3.665-8.17,8.17-8.17c4.506,0,8.17,3.665,8.17,8.17C98.043,69.867,94.378,73.532,89.872,73.532z"></path> </g> </g> <g> <g> 
+                        <path d="M367.66,40.851c-13.516,0-24.511,10.995-24.511,24.511c0,13.516,10.995,24.511,24.511,24.511 c13.516,0,24.511-10.995,24.511-24.511C392.17,51.846,381.175,40.851,367.66,40.851z M367.66,73.532 c-4.506,0-8.17-3.666-8.17-8.17s3.665-8.17,8.17-8.17c4.506,0,8.17,3.665,8.17,8.17C375.83,69.867,372.165,73.532,367.66,73.532z"></path> </g> </g> <g> <g> 
+                        <path d="M367.66,187.915H89.872c-4.512,0-8.17,3.658-8.17,8.17v163.404c0,4.512,3.658,8.17,8.17,8.17h166.042 c4.512,0,8.17-3.658,8.17-8.17s-3.658-8.17-8.17-8.17h-65.276v-65.362h76.255v25.378c0,4.512,3.658,8.17,8.17,8.17 s8.17-3.658,8.17-8.17v-25.378h21.272c4.512,0,8.17-3.658,8.17-8.17s-3.658-8.17-8.17-8.17h-21.272v-65.362h76.255v43.49 c0,4.512,3.658,8.17,8.17,8.17c4.512,0,8.17-3.658,8.17-8.17v-51.66C375.83,191.573,372.172,187.915,367.66,187.915z M174.298,351.319H98.043v-65.362h76.255V351.319z M174.298,269.617H98.043v-65.362h76.255V269.617z M266.894,269.617h-76.255 v-65.362h76.255V269.617z"></path> </g> </g> <g> <g> <path d="M449.362,8.17H8.17c-2.167,0-4.245,0.861-5.777,2.393C0,12.956,0,14.201,0,21.112v13.484v79.774 c0,0.025,0,326.822,0,326.822c0,4.512,3.658,8.17,8.17,8.17h256.005c4.512,0,8.17-3.658,8.17-8.17c0-4.512-3.658-8.17-8.17-8.17 H16.34c0-38.035,0-200.036,0-310.468h424.851v133.453c0,4.512,3.658,8.17,8.17,8.17s8.17-3.658,8.17-8.17V16.34 C457.532,11.828,453.874,8.17,449.362,8.17z M441.191,106.213H16.34c0-37.941,0-67.957,0-81.702h424.851V106.213z"></path> </g> </g> <g> <g> <path d="M394.894,269.617c-64.573,0-117.106,52.533-117.106,117.106S330.321,503.83,394.894,503.83S512,451.296,512,386.723 S459.466,269.617,394.894,269.617z M394.894,487.489c-55.563,0-100.766-45.203-100.766-100.766 c0-55.563,45.203-100.766,100.766-100.766c55.563,0,100.766,45.203,100.766,100.766 C495.66,442.286,450.455,487.489,394.894,487.489z"></path> </g> </g> <g> <g> <path d="M449.362,362.213h-29.957v-29.957c0-13.516-10.995-24.511-24.511-24.511s-24.511,10.995-24.511,24.511v29.957h-29.957 c-13.516,0-24.511,10.995-24.511,24.511c0,13.516,10.995,24.511,24.511,24.511h29.957v29.957 c0,13.516,10.995,24.511,24.511,24.511s24.511-10.996,24.511-24.511v-29.957h29.957c13.516,0,24.511-10.995,24.511-24.511 C473.872,373.208,462.876,362.213,449.362,362.213z M449.362,394.894h-38.128c-4.512,0-8.17,3.658-8.17,8.17v38.128 c0,4.506-3.665,8.17-8.17,8.17c-4.506,0-8.17-3.665-8.17-8.17v-38.128c0-4.512-3.658-8.17-8.17-8.17h-38.128 c-4.506,0-8.17-3.665-8.17-8.17c0-4.506,3.665-8.17,8.17-8.17h38.128c4.512,0,8.17-3.658,8.17-8.17v-38.128 c0-4.506,3.665-8.17,8.17-8.17c4.506,0,8.17,3.665,8.17,8.17v38.128c0,4.512,3.658,8.17,8.17,8.17h38.128 c4.506,0,8.17,3.665,8.17,8.17C457.532,391.229,453.866,394.894,449.362,394.894z"></path> </g> </g> </g></svg> 
+                        {{ block.settings.appointment_label }}</span>
+                    </a>
+                  {% endif %}
+                </div >
+                <div class="calendly--inline-widget" id="calendly" style="display: none;">
+                    {% if block.settings.calendly_html != blank %}
+                        {{ block.settings.calendly_html }}
+                    {% endif %}
+                   <!-- Calendly inline widget begin 
+                      <div class="calendly-inline-widget" data-url="https://calendly.com/komowa-support/product-consultation-call" style="min-width:320px;height:700px;"></div>
+                      <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+                   Calendly inline widget end -->
+                </div>
+              </div>
+          {%- when 'feature_with_icon' -%}
+            {%- if block.settings.text != blank or block.settings.icon != 'none' or block.settings.custom_icon != blank -%}
+              {%- capture feature_content -%}
+                {%- if block.settings.custom_icon != blank -%}
+                  {%- capture sizes -%}{{ block.settings.icon_width }}px{%- endcapture -%}
+                  {%- capture widths -%}{{ block.settings.icon_width }}, {{ block.settings.icon_width | times: 2 | at_most: block.settings.custom_icon.width }}{%- endcapture -%}
+                  {%- capture style -%}--image-max-width: {{ block.settings.icon_width }}px{%- endcapture -%}
+                  {{- block.settings.custom_icon | image_url: width: block.settings.custom_icon.width | image_tag: loading: 'lazy', sizes: sizes, widths: widths, class: 'constrained-image', style: style -}}
+                {%- else -%}
+                  {%- render 'icon' with block.settings.icon, width: block.settings.icon_width -%}
+                {%- endif -%}
+
+                {%- if block.settings.text != blank -%}
+                  {%- if block.settings.icon == 'none' and block.settings.text contains 'In Stock and Ready to Ship' -%}
+                    <div class="instock-pulse">
+                      <span class="icon--pulsing"></span>
+                      <p>{{ block.settings.text }}</p>
+                    </div>
+                  {% else %}
+                    <p>{{ block.settings.text }}</p>
+                  {% endif %}
+                {%- endif -%}
+              {%- endcapture -%}
+
+              {%- assign has_border = false -%}
+
+              {%- if block.settings.border_color != blank and block.settings.border_color != 'rgba(0,0,0,0)' -%}
+                {%- assign has_border = true -%}
+              {%- endif -%}
+
+              {%- if block.settings.link -%}
+                <a href="{{ block.settings.link }}" class="feature-badge {% if has_border %}border{% endif %}" style="{% render 'surface', background: block.settings.background, text_color: block.settings.text_color, border_color: block.settings.border_color %}">
+                  {{- feature_content -}}
+                </a>
+              {%- else -%}
+                <div class="feature-badge {% if has_border %}border{% endif %}" style="{% render 'surface', background: block.settings.background, text_color: block.settings.text_color, border_color: block.settings.border_color %}">
+                  {{- feature_content -}}
+                </div>
+              {%- endif -%}
+            {%- endif -%}
+
+          {%- when 'liquid' -%}
+            {%- if block.settings.liquid != blank -%}
+              <div class="liquid">
+                {{- block.settings.liquid -}}
+              </div>
+            {%- endif -%}
+
+          {%- when 'modal' -%}
+            {%- if block.settings.button_title != blank and block.settings.modal_content != blank -%}
+              {%- assign modal_id = 'modal-' | append: block.id -%}
+
+              {%- render 'button', content: block.settings.button_title, aria_controls: modal_id, style: block.settings.button_style, stretch: block.settings.stretch_button, background: block.settings.button_background, text_color: block.settings.button_text_color -%}
+
+              <x-modal id="{{ modal_id | escape }}" class="modal modal--lg">
+                <span class="h5" slot="header">{{ block.settings.modal_title }}</span>
+
+                <div class="prose">
+                  {{- block.settings.modal_content -}}
+                </div>
+              </x-modal>
+            {%- endif -%}
+
+          {%- when 'image' -%}
+            {%- if block.settings.image != blank -%}
+              {%- capture image_style_attribute -%}{% if block.settings.alignment == 'center' %}margin-inline: auto;{% elsif block.settings.alignment == 'end' %}margin-inline-start: auto;{% endif %}{%- endcapture -%}
+
+              {%- if block.settings.width_mode == 'custom' -%}
+                {%- capture image_style_attribute -%}{{ image_style_attribute }} --image-max-width: {{ block.settings.max_width }}px; --image-mobile-max-width: {{ block.settings.mobile_max_width }}px{%- endcapture -%}
+                {%- capture image_sizes_attribute -%}(max-width: 699px) min({{ block.settings.mobile_max_width }}px, 100vw), min({{ block.settings.max_width }}px, 100vw){%- endcapture -%}
+              {%- else -%}
+                {%- capture image_sizes_attribute -%}min(600px, 100vw){%- endcapture -%}
+                {%- capture image_style_attribute -%}width: 100%;{%- endcapture -%}
+              {%- endif -%}
+
+              {{- block.settings.image | image_url: width: block.settings.image.width | image_tag: loading: 'lazy', sizes: image_sizes_attribute, widths: '200,300,400,500,600,800,1000,1200,1400', class: 'constrained-image', style: image_style_attribute -}}
+            {%- endif -%}
+
+          {%- when 'button' -%}
+            {%- if block.settings.text != blank -%}
+              {%- render 'button', href: block.settings.link, content: block.settings.text, stretch: block.settings.stretch, background: block.settings.background, text_color: block.settings.text_color -%}
+            {%- endif -%}
+
+          {%- when 'share_buttons' -%}
+            <button class="share-buttons share-buttons--native link-faded" is="share-button" hidden>
+              <span class="smallcaps text-xxs">{{- 'general.social.share' | t -}}</span>
+              {%- render 'icon' with 'share' -%}
+            </button>
+
+            <div class="share-buttons">
+              <span class="smallcaps text-xxs text-subdued">{{- 'general.social.share' | t -}}</span>
+              {%- render 'share-buttons', url: product.url, title: product.title, description: product.description, layout: 'list' -%}
+            </div>
+
+          {%- when 'more_information' -%}
+            {%- comment -%}We need at least one block compatible with below gallery information{%- endcomment -%}
+            {%- if block.settings.text != blank and has_content_below_gallery -%}
+              <a href="#product-extra-information" class="product-info__more-info md-max:hidden">
+                <span class="smallcaps text-xxs">{{- block.settings.text -}}</span>
+                {%- render 'icon' with 'chevron-right' -%}
+              </a>
+            {%- endif -%}
+          {%- when 'payments_block' -%}
+            <div class="payments-block__wrapper {% if product.compare_at_price != blank %}compare-at__present{% endif %}">
+              <div class="onetime_purchase">
+                <div class="v-stack">
+                <span class="title">ONE TIME INVESTMENT</span>
+                  {%- render 'price-list', product: product, variant: product.selected_or_first_available_variant, context: 'product', form_id: product_form_id -%}
+    
+                  {%- if block.settings.show_taxes_notice -%}
+                    <p class="text-sm text-subdued">
+                      {%- if cart.taxes_included -%}
+                        {{ 'product.general.taxes_included' | t }}
+                      {%- else -%}
+                        {{ 'product.general.taxes_excluded' | t }}
+                      {%- endif -%}
+    
+                      {%- if shop.shipping_policy.body != blank -%}
+                        {{ 'product.general.shipping_policy_html' | t: link: shop.shipping_policy.url }}
+                      {%- endif -%}
+                    </p>
+                  {%- endif -%}
+                </div>
+              </div>
+
+              {%- if product != blank -%}
+                <div class="payment-terms-wrap">
+                  <payment-terms class="payment-terms" form="{{ product_form_id }}">
+                    {%- capture product_installment_form_id -%}product-installment-form-{{ section.id }}-{{ product.id }}{%- endcapture -%}
+    
+                    {%- form 'product', product, id: product_installment_form_id, class: 'no_bold_options' -%}
+                      <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+                      {{- form | payment_terms -}}
+                    {%- endform -%}
+                  </payment-terms>
+                </div>
+              {%- endif -%}
+
+              <div id="truemed-prequalify" style="font-size: 17px; margin-top: 9px; margin-left: auto; margin-right: auto; font-weight: 600;" icon-height="17" data-public-id="tm_qual_zilyoc1je5"></div>
+              <script src="https://truemed-public.s3.us-west-1.amazonaws.com/truemed-ads/prequal-widget.min.js" defer></script>
+            </div>
+        {%- endcase -%}
+      {%- endcapture -%}
+
+      {%- if block_content != blank -%}
+        {%- if allow_block_group and inside_block_group_context == false -%}
+          {%- assign inside_block_group_context = true -%}
+          <div class="product-info__block-group {{ block_group_class }}" data-group-type="{{ block_group_name }}">
+        {%- endif -%}
+
+        <div class="product-info__block-item" style="
+          width: -webkit-fill-available" data-block-type="{{ block.type | replace: '_', '-' }}" {% unless block.type == '@app' or block.type == 'accordion' %}{{ block.shopify_attributes }}{% endunless %}>
+          {{- block_content -}}
+        </div>
+      {%- endif -%}
+
+      {%- if inside_block_group_context and allow_block_group == false -%}
+        {%- assign inside_block_group_context = false -%}
+        </div>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+
+  {%- comment -%}
+    IMPLEMENTATION NOTE: under rare circumstances, merchant may want to show selectors to allow variant selection, but hide
+    the add to cart button. This is however problematic as product info is changed based on the form, so we create a default
+    one if no buy buttons exists
+  {%- endcomment -%}
+
+  {%- assign buy_buttons_block = section.blocks | where: 'type', 'buy_buttons' | first -%}
+
+  {%- unless buy_buttons_block != blank or product == blank -%}
+    {%- form 'product', product, id: product_form_id, hidden: true -%}
+      <input type="hidden" disabled name="id" value="{{ product.selected_or_first_available_variant.id }}">
+    {%- endform -%}
+  {%- endunless -%}
+</safe-sticky>

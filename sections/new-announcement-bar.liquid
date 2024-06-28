@@ -1,0 +1,228 @@
+<div class="new-announcement-bar-{{ section.id }} new-announcement-bar-section">
+  <div class="container">
+    <div class="new-announcement-bar-content">
+      <div class="trustpilot_wrapper">
+        <div class="trustpilot_content_wrapper">
+          <div class="trustpilot_image_wrapper">
+            {% if section.settings.trustpilot_img != blank %}
+              <img class="announcement_desktop_img" src="{{ section.settings.trustpilot_img|img_url: 'master' }}" alt="{{ section.settings.trustpilot_img.alt }}">
+            {% endif %}            
+            {% if section.settings.trustpilot_mob_img != blank %}
+              <img class="announcement_mobile_img" src="{{ section.settings.trustpilot_mob_img|img_url: 'master' }}">
+            {% endif %}
+          </div>
+          <div class="trust-con-wrapper">
+            {% if section.settings.trust_content != blank %}
+              {{ section.settings.trust_content }}
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      <div class="message_us_wrapper">
+        <div class="message_wrapper">
+          {% if section.settings.msg_link != blank %}<a href="{{ section.settings.msg_link }}">{% endif %}
+            {% if section.settings.chat_icon != blank %}
+              <img src="{{ section.settings.chat_icon|img_url: 'master' }}" alt="{{ section.settings.chat_icon.alt }}">
+            {% endif %}
+            {% if section.settings.msg_text != blank %}
+              <p>{{ section.settings.msg_text }}</p>
+            {% endif %}
+          {% if section.settings.msg_link != blank %}</a>{% endif %}
+        </div>
+        <div class="agent_wrapper">
+          <div class="agent_img_wrapper">
+            {% if section.settings.agent_img != blank %}
+              <img src="{{ section.settings.agent_img|img_url: 'master' }}" alt="{{ section.settings.agent_img.alt }}">
+            {% endif %}
+          </div>
+          <div class="agent_content_wrapper">
+            {% if section.settings.mobile_link != blank %}<a href="{{ section.settings.mobile_link }}">{% endif %}
+              {% if section.settings.agent_text != blank %}
+                <p>{{ section.settings.agent_text }}</p>
+              {% endif %}
+              {% if section.settings.agent_no != blank %}
+                <h4>{{ section.settings.agent_no }}</h4>
+              {% endif %}
+            {% if section.settings.mobile_link != blank %}</a>{% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+.new-announcement-bar-{{ section.id }}{
+  background: {{ section.settings.section_bg }};
+  padding-top: {{ section.settings.padding_top }}px;
+  padding-bottom: {{ section.settings.padding_bottom }}px;
+}
+.new-announcement-bar-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.trustpilot_content_wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.trust-con-wrapper p {
+  font-size: 15px;
+  color: #fff;
+}
+.message_wrapper, .message_us_wrapper {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.message_wrapper a {
+  display: flex;
+  align-items: center;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: normal;
+  text-transform: uppercase;
+  display: inline-flex;
+  border: 1px solid #fff;
+  padding: 10px;
+  margin: 0;
+  gap: 7px;
+  border-radius: 3px;
+}
+.message_wrapper p{
+  color: #fff;
+}
+.agent_wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.agent_img_wrapper img {
+  width: 28px;
+}
+.agent_content_wrapper p {
+  color: #fff;
+  font-size: 8px;
+  font-weight: 400;
+  margin: 0;
+}
+.agent_content_wrapper h4 {
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 0;
+}
+.new-announcement-bar-section .new-announcement-bar-content .trustpilot_image_wrapper .announcement_mobile_img {
+  display: none;
+}
+  @media(max-width: 600px){
+    .message_wrapper{
+      display: none;
+    }
+  }
+  @media(max-width: 474px){
+    .trustpilot_image_wrapper .announcement_desktop_img {
+      display: none;
+    }
+    .trust-con-wrapper p{
+      font-size: 12px;
+    }
+    .new-announcement-bar-section .new-announcement-bar-content .trustpilot_image_wrapper .announcement_mobile_img {
+      display: block;
+      height: 16px;
+    }
+  }
+</style>
+{% schema %}
+  {
+    "name": "New Announcement Bar",
+    "settings": [
+      {
+        "type": "image_picker",
+        "label": "Trustpilot image",
+        "id": "trustpilot_img"
+      },      
+      {
+        "type": "image_picker",
+        "label": "Trustpilot mobile image",
+        "id": "trustpilot_mob_img"
+      },
+      {
+        "type": "richtext",
+        "id": "trust_content",
+        "label": "Content"
+      },
+      {
+        "type": "header",
+        "content": "Message Us"
+      },
+      {
+        "type": "image_picker",
+        "id": "chat_icon",
+        "label": "Chat Icon"
+      },
+      {
+        "type": "text",
+        "id": "msg_text",
+        "label": "Message Text"
+      },
+      {
+        "type": "url",
+        "id": "msg_link",
+        "label": "Message Link"
+      },
+      {
+        "type": "image_picker",
+        "id": "agent_img",
+        "label": "Agent Image"
+      },
+      {
+        "type": "text",
+        "id": "agent_text",
+        "label": "Text"
+      },
+      {
+        "type": "text",
+        "id": "agent_no",
+        "label": "Mobile Number"
+      },
+      {
+        "type": "url",
+        "id": "mobile_link",
+        "label": "Mobile Link"
+      },
+      {
+        "type": "color",
+        "id": "section_bg",
+        "label": "Section Background Color"
+      },
+      {
+        "type": "range",
+        "id": "padding_top",
+        "label": "Padding top",
+        "min": 0,
+        "max": 60,
+        "default": 10,
+        "step": 1,
+        "unit": "px"
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom",
+        "label": "Padding Bottom",
+        "min": 0,
+        "max": 60,
+        "default": 10,
+        "step": 1,
+        "unit": "px"
+      }
+    ],
+    "presets": [
+      {
+        "name": "new announcement bar"
+      }
+    ],
+    "enabled_on": {"groups": ["header"]}
+  }
+{% endschema %}

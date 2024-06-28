@@ -1,0 +1,12 @@
+<script type="text/javascript" src="https://sdk.qikify.com/tmenu/app-v5.js" defer="defer"></script>
+{% render 'qikify-tmenu-data' %}
+<style id="qikify-tmenu-custom-style">.tmenu_nav .tmenu_item--root > a.tmenu_item_link {
+  font-family: var(--heading-font-family);
+  font-weight: var(--heading-font-weight);
+}
+
+@media (max-width: 999px) {
+  div.tmenu_wrapper {
+    display: none;
+  }
+}</style>
