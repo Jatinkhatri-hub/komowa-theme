@@ -8419,7 +8419,9 @@ template#drawer-default-template .button-custom svg {
 
 
 
-.cart-drawer
+.cart-drawer__subtotal-price {
+  
+}
 
 .button-group.custom {
   gap: 0;
