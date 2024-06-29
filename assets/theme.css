@@ -8433,7 +8433,9 @@ template#drawer-default-template .button-custom svg {
   font-weight: 600;
 }
 
-.cart-drawer__footer-price
+.cart-drawer__footer-price.savings {
+  color:
+}
 
 .cart-drawer__footer-shipping {
   color: #299F00;
