@@ -8404,5 +8404,6 @@ template#drawer-default-template .button-custom svg {
   padding: 0.25rem .5rem;
   font-size: 1.125rem;
   border-radius: 8px;
+  font-weight: 500;
 
 }
