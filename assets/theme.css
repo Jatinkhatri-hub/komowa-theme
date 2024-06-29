@@ -8335,4 +8335,6 @@ template#drawer-default-template .button-custom svg {
   align-items: center;
 }
 
-.cart
+.cart-drawer__heading {
+  font-size: ;
+}
