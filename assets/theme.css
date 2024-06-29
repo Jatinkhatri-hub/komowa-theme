@@ -8434,7 +8434,7 @@ template#drawer-default-template .button-custom svg {
 }
 
 .cart-drawer__footer-price.savings {
-  color:
+  color: #CD0000;
 }
 
 .cart-drawer__footer-shipping {
