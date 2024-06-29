@@ -955,7 +955,7 @@ height-observer {
   padding-block-start: var(--drawer-header-padding-block);
   padding-block-end: var(--drawer-header-padding-block);
   padding-inline-start: var(--drawer-header-padding-inline);
-  padding-inline-end: var(--drawer-header-padding-inline)*/;
+  padding-inline-end: 1rem/*var(--drawer-header-padding-inline)*/;
   display: flex;
 }
 
