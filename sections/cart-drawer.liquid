@@ -21,8 +21,8 @@
         {%- render 'new-line-item', line_item: line_item, show_quantity_selector: true -%}
       {%- endfor -%}
     </div>
-    <div>
-      
+    <div class="discount">
+
     </div>
 
     <form action="{{ routes.cart_url }}" method="POST" class="cart-drawer__footer" slot="footer">
