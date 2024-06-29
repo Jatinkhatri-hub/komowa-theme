@@ -13,7 +13,9 @@
           <p class="h6">{{ line_item.product.title |  default: line_item.title }}</p>
         {%- endif -%}
         <div class="h-stack align-start gap-2">
-          <span>{{ line_item.product.price }}</span> 
+          <span>{{ line_item.product.price }}</span>
+          <span>{{ line_item.product.compare_at_price }}</span>
+          
         </div>
       </div>
      </div>
