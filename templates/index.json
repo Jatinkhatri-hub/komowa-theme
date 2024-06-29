@@ -322,6 +322,117 @@
         "content": ""
       }
     },
+    "featured_product_eMXjAM": {
+      "type": "featured-product",
+      "blocks": {
+        "vendor_Y4Vrhb": {
+          "type": "vendor",
+          "settings": {
+          }
+        },
+        "title_tU8BV3": {
+          "type": "title",
+          "settings": {
+            "heading_tag": "h3"
+          }
+        },
+        "badges_iDGWqz": {
+          "type": "badges",
+          "settings": {
+          }
+        },
+        "price_6MHFMm": {
+          "type": "price",
+          "settings": {
+            "show_taxes_notice": false
+          }
+        },
+        "rating_F8F9Jh": {
+          "type": "rating",
+          "settings": {
+            "show_empty": true,
+            "rating_mode": "rating"
+          }
+        },
+        "payment_terms_iDyhmF": {
+          "type": "payment_terms",
+          "settings": {
+          }
+        },
+        "separator_AYLfRz": {
+          "type": "separator",
+          "settings": {
+          }
+        },
+        "description_Gn3gcy": {
+          "type": "description",
+          "settings": {
+            "collapse_content": false
+          }
+        },
+        "variant_picker_Vi3giD": {
+          "type": "variant_picker",
+          "settings": {
+            "hide_sold_out_variants": false,
+            "selector_type": "block",
+            "color_selector_type": "color",
+            "size_chart_page": ""
+          }
+        },
+        "quantity_selector_JJ4x9n": {
+          "type": "quantity_selector",
+          "settings": {
+          }
+        },
+        "buy_buttons_ccpCBR": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_payment_button": true,
+            "show_gift_card_recipient": true,
+            "atc_button_background": "",
+            "atc_button_text_color": "",
+            "payment_button_background": "",
+            "payment_button_text_color": ""
+          }
+        },
+        "pickup_availability_E7BgjN": {
+          "type": "pickup_availability",
+          "settings": {
+          }
+        }
+      },
+      "block_order": [
+        "vendor_Y4Vrhb",
+        "title_tU8BV3",
+        "badges_iDGWqz",
+        "price_6MHFMm",
+        "rating_F8F9Jh",
+        "payment_terms_iDyhmF",
+        "separator_AYLfRz",
+        "description_Gn3gcy",
+        "variant_picker_Vi3giD",
+        "quantity_selector_JJ4x9n",
+        "buy_buttons_ccpCBR",
+        "pickup_availability_E7BgjN"
+      ],
+      "settings": {
+        "product": "waveblock™-iprotect",
+        "separate_section_with_border": true,
+        "container_size": "lg",
+        "product_info_size": 45,
+        "center_basic_info": false,
+        "desktop_media_layout": "carousel_thumbnails_bottom",
+        "desktop_media_grid_gap": 30,
+        "mobile_controls": "dots",
+        "enable_media_autoplay": false,
+        "enable_video_looping": true,
+        "enable_image_zoom": false,
+        "max_image_zoom_level": 3,
+        "subheading": "",
+        "title": "Featured product",
+        "content": ""
+      }
+    },
     "blog-posts": {
       "type": "blog-posts",
       "custom_css": [
@@ -520,6 +631,7 @@
     "image_with_text_overlay_qtDjqC",
     "7f472d5a-90d6-456f-b551-772408df21a6",
     "b18d2745-119a-4b8d-8635-a25b5e1eeb90",
+    "featured_product_eMXjAM",
     "blog-posts",
     "8cc6a23a-995f-4915-86ec-fa4ceb681956",
     "34fd6eb7-bcd8-4917-a4df-04389052f938",
