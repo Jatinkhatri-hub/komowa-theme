@@ -74,8 +74,13 @@
       {% endfor %}
 
       <div class="h-stack justify-between subtotal-container" style="width: 100%;">
-        <span class="cart-drawer__footer-title">Subtotal:</span>
+        <span class="cart-drawer__footer-title">Shipping:</span>
         <span class="cart-drawer__subtotal-price">{{ cart.total_price |  money }}</span>
+      </div>
+
+      <div class="h-stack justify-between subtotal-container" style="width: 100%;">
+        <span class="cart-drawer__footer-title">Subtotal:</span>
+        <span class="cart-drawer__footer-price">{{ cart.total_price |  money }}</span>
       </div>
 
       <div class="button-group custom">
