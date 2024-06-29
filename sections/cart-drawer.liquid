@@ -62,6 +62,8 @@
         </div>
       {%- endif -%}
 
+      
+
       {% for discount_application in cart.cart_level_discount_applications %}
         {% comment %} <div class="h-stack justify-start gap-4">
           <span class="discount-badge text-xs">{%- render 'icon' with 'discount', width: 12 -%} {{- discount_application.title -}}</span>
