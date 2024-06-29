@@ -940,6 +940,7 @@ height-observer {
   align-content: start;
   display: grid;
   position: relative;
+  border-top-left-radius: ;
 }
 
 .drawer::part(header) {
@@ -8339,7 +8340,7 @@ template#drawer-default-template .button-custom svg {
   font-size: 29px;
   color: #000;
   font-family: var(--heading-font-family);
-  font-weight: 400;
+  font-weight: 400 !important;
   /* font-style: var(--heading-font-style); */
   text-transform: var(--heading-text-transform);
   overflow-wrap: anywhere;
