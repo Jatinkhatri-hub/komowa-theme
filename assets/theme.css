@@ -940,7 +940,8 @@ height-observer {
   align-content: start;
   display: grid;
   position: relative;
-  border-top-left-radius: ;
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: ;
 }
 
 .drawer::part(header) {
