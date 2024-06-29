@@ -21,7 +21,7 @@
         {%- render 'new-line-item', line_item: line_item, show_quantity_selector: true -%}
       {%- endfor -%}
     </div>
-    {% comment %} {% if cart.cart_level_discount_applications.size > 0 %}
+    {% if cart.cart_level_discount_applications.size > 0 %}
       <div class="container__discount-applied">
 
       {% for discount_application in cart.cart_level_discount_applications %}
@@ -31,7 +31,7 @@
       {% endfor %}
       </div>
     
-    {% endif %} {% endcomment %}
+    {% endif %}
 
     <form action="{{ routes.cart_url }}" method="POST" class="cart-drawer__footer" slot="footer">
       <input type="hidden" name="attributes[products_mobile_grid_mode]" value="">
