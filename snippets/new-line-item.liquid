@@ -1,4 +1,4 @@
-<line-item class="line-item">
+<line-item class="line-item gap-1">
   {% if line_item.image != blank %}
     {{- line_item.image | image_url: width: line_item.image.width | image_tag: loading: 'lazy', sizes: '(max-width: 699px) 70px, 120px', widths: '70,120,140,210,240,360', class: 'line-item__media' -}}
   {% endif %}
@@ -12,7 +12,7 @@
         {%- else -%}
           <p class="h6">{{ line_item.product.title |  default: line_item.title }}</p>
         {%- endif -%}
-        <div class="h-stack align-start gap-2">
+        <div class="h-stack align-start gap-1">
           <span class="line-item__current-price">{{ line_item.product.price |  money }}</span>
           <span class="line-item__cap">{{ line_item.product.compare_at_price |  money }}</span>
           {%  assign original_price = line_item.product.compare_at_price %}
