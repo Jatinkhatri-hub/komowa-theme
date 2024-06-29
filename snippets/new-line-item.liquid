@@ -2,8 +2,9 @@
   {% if line_item.image != blank %}
     {{- line_item.image | image_url: width: line_item.image.width | image_tag: loading: 'lazy', sizes: '(max-width: 699px) 70px, 120px', widths: '70,120,140,210,240,360', class: 'line-item__media' -}}
   {% endif %}
-  <div>
+  <div class="line-item-info">
     
+
   </div>
 
 </line-item>
