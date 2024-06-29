@@ -15,7 +15,7 @@
         <div class="h-stack align-start gap-2">
           <span>{{ line_item.product.price }}</span>
           <span>{{ line_item.product.compare_at_price }}</span>
-          {}
+          {%  assign original_price = product %} 
         </div>
       </div>
      </div>
