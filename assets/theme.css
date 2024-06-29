@@ -8301,5 +8301,7 @@ button.button.checkout-btn {
 
 .button-custom {
   padding: .375rem;
-  
+  background-color: black;
 }
+
+.button
