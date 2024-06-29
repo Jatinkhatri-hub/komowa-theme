@@ -8331,5 +8331,5 @@ template#drawer-default-template .button-custom svg {
 .header__cart-drawer {
   display: flex;
   flex-direction: row;
-  gap: 
+  gap: 0.125rem;
 }
