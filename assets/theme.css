@@ -8299,4 +8299,7 @@ button.button.checkout-btn {
 
 /* CUSTOM CART STYLES */
 
-.
+.button-custom {
+  padding: .375rem;
+  
+}
