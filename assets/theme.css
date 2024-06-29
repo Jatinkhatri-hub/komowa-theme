@@ -8382,7 +8382,7 @@ template#drawer-default-template .button-custom svg {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100vw;
+  width: 100%;
 }
 
 .custom-selector {
@@ -8395,4 +8395,8 @@ template#drawer-default-template .button-custom svg {
   color: white;
   margin: 0.25rem;
   border-radius: 4px;
+}
+
+.discount-text {
+  
 }
