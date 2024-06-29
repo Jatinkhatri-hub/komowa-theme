@@ -8418,7 +8418,11 @@ template#drawer-default-template .button-custom svg {
   letter-spacing: normal;
 }
 
-.payment-option
+.payment-option-image__container {
+  display: flex;
+  justify-content: center;
+  a
+}
 
 .payment-option__image {
   width: 360px;
