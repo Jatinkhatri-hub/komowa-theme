@@ -8401,7 +8401,8 @@ template#drawer-default-template .button-custom svg {
   background: #253b80;
   color: white;
   text-align: center;
-  padding: 0.25rem 5rem;
+  padding: 0.25rem .5rem;
   font-size: 1.125rem;
-  
+  border-radius: ;
+
 }
