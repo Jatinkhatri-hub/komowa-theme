@@ -32,7 +32,7 @@
       endcomment
     %}
 
-    <a href="{{ routes.cart_change_url }}?id={{ line_item.key }}&quantity={{ line_item.quantity | minus: 1 }}" class="quantity-selector__button">
+    <a href="{{ routes.cart_change_url }}?id={{ line_item.key }}&quantity={{ line_item.quantity | minus: 1 }}" class="quantity-selector__button custom-button">
       <span class="sr-only">{{ 'product.quantity.decrease_quantity' | t }}</span>
       {%- render 'icon' with 'minus'
         , width: 10 -%}
