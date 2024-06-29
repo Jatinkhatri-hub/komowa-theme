@@ -8419,7 +8419,7 @@ template#drawer-default-template .button-custom svg {
 
 
 .subtotal-container {
-  border-t
+  border-top: 1px solid ;
 }
 
 .cart-drawer__subtotal-title {
