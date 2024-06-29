@@ -8425,7 +8425,7 @@ template#drawer-default-template .button-custom svg {
 }
 
 .cart-drawer__subtotal-price {
-  font
+  font-weight: 600;
 }
 
 .button-group.custom {
