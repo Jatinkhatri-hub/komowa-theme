@@ -15,6 +15,7 @@
         "template--21628260024624__d6cc37d2-7840-438e-99c3-1b4514535fe4-image-1": {
           "type": "image",
           "settings": {
+            "image": "shopify:\/\/shop_images\/garda-alps-3a_430x_2.webp",
             "subheading": "Euphoria is One Sauna Session Away",
             "title": "<strong>KOMOWA LUXURY HOME SAUNAS<\/strong>",
             "mobile_text_position": "place-self-center text-center",
@@ -92,6 +93,8 @@
         "image_jNqRQF": {
           "type": "image",
           "settings": {
+            "image": "shopify:\/\/shop_images\/Your_paragraph_text_9.png",
+            "mobile_image": "shopify:\/\/shop_images\/Your_paragraph_text_11.png",
             "subheading": "",
             "title": "",
             "mobile_text_position": "place-self-center text-center",
@@ -148,6 +151,8 @@
       ],
       "settings": {
         "image_size": "auto",
+        "image": "shopify:\/\/shop_images\/Your_paragraph_text_3.png",
+        "mobile_image": "shopify:\/\/shop_images\/Your_paragraph_text_6.png",
         "allow_transparent_header": false,
         "reveal_on_scroll": true,
         "remove_vertical_spacing": true,
@@ -165,6 +170,7 @@
         "template--21471179669808__7f472d5a-90d6-456f-b551-772408df21a6-image-1": {
           "type": "image",
           "settings": {
+            "image": "shopify:\/\/shop_images\/auroom-traditional-sauna-auroom-familia-2-person-indoor-sauna-42817995571504.webp",
             "column_count": "6",
             "row_count": 1,
             "title": "Traditional",
@@ -184,6 +190,7 @@
         "template--21471179669808__7f472d5a-90d6-456f-b551-772408df21a6-image-2": {
           "type": "image",
           "settings": {
+            "image": "shopify:\/\/shop_images\/Pros_and_Cons_of_Infrared_Sauna_1.png",
             "column_count": "6",
             "row_count": 1,
             "title": "Infrared",
@@ -301,11 +308,12 @@
         "template--21084899246384__b18d2745-119a-4b8d-8635-a25b5e1eeb90-quantity_selector-1",
         "template--21084899246384__b18d2745-119a-4b8d-8635-a25b5e1eeb90-buy_buttons-1"
       ],
+      "disabled": true,
       "custom_css": [
 
       ],
       "settings": {
-        "product": "waveblock™-pro",
+        "product": "como-series-infrared-sauna",
         "separate_section_with_border": true,
         "container_size": "full",
         "product_info_size": 45,
@@ -340,117 +348,6 @@
         "content": "",
         "button_link": "",
         "button_text": ""
-      }
-    },
-    "featured_product_VPtRgz": {
-      "type": "featured-product",
-      "blocks": {
-        "vendor_jJAyWr": {
-          "type": "vendor",
-          "settings": {
-          }
-        },
-        "title_LftbRL": {
-          "type": "title",
-          "settings": {
-            "heading_tag": "h3"
-          }
-        },
-        "badges_aeNghz": {
-          "type": "badges",
-          "settings": {
-          }
-        },
-        "price_W6PXMa": {
-          "type": "price",
-          "settings": {
-            "show_taxes_notice": false
-          }
-        },
-        "rating_BJHnni": {
-          "type": "rating",
-          "settings": {
-            "show_empty": true,
-            "rating_mode": "rating"
-          }
-        },
-        "payment_terms_iiXDbA": {
-          "type": "payment_terms",
-          "settings": {
-          }
-        },
-        "separator_P4bkXY": {
-          "type": "separator",
-          "settings": {
-          }
-        },
-        "description_mJfjhr": {
-          "type": "description",
-          "settings": {
-            "collapse_content": false
-          }
-        },
-        "variant_picker_hwbaAA": {
-          "type": "variant_picker",
-          "settings": {
-            "hide_sold_out_variants": false,
-            "selector_type": "block",
-            "color_selector_type": "color",
-            "size_chart_page": ""
-          }
-        },
-        "quantity_selector_T6TB3k": {
-          "type": "quantity_selector",
-          "settings": {
-          }
-        },
-        "buy_buttons_rqEKkM": {
-          "type": "buy_buttons",
-          "settings": {
-            "show_payment_button": true,
-            "show_gift_card_recipient": true,
-            "atc_button_background": "",
-            "atc_button_text_color": "",
-            "payment_button_background": "",
-            "payment_button_text_color": ""
-          }
-        },
-        "pickup_availability_egtPhf": {
-          "type": "pickup_availability",
-          "settings": {
-          }
-        }
-      },
-      "block_order": [
-        "vendor_jJAyWr",
-        "title_LftbRL",
-        "badges_aeNghz",
-        "price_W6PXMa",
-        "rating_BJHnni",
-        "payment_terms_iiXDbA",
-        "separator_P4bkXY",
-        "description_mJfjhr",
-        "variant_picker_hwbaAA",
-        "quantity_selector_T6TB3k",
-        "buy_buttons_rqEKkM",
-        "pickup_availability_egtPhf"
-      ],
-      "settings": {
-        "product": "waveblock™-iprotect",
-        "separate_section_with_border": true,
-        "container_size": "lg",
-        "product_info_size": 45,
-        "center_basic_info": false,
-        "desktop_media_layout": "carousel_thumbnails_bottom",
-        "desktop_media_grid_gap": 30,
-        "mobile_controls": "dots",
-        "enable_media_autoplay": false,
-        "enable_video_looping": true,
-        "enable_image_zoom": false,
-        "max_image_zoom_level": 3,
-        "subheading": "",
-        "title": "Featured product",
-        "content": ""
       }
     },
     "8cc6a23a-995f-4915-86ec-fa4ceb681956": {
@@ -534,6 +431,7 @@
         "logo_y6cyqL": {
           "type": "logo",
           "settings": {
+            "logo": "shopify:\/\/shop_images\/Komowa.png",
             "logo_width": 140,
             "link": ""
           }
@@ -541,6 +439,7 @@
         "template--21084899246384__34fd6eb7-bcd8-4917-a4df-04389052f938-logo-2": {
           "type": "logo",
           "settings": {
+            "logo": "shopify:\/\/shop_images\/download-1_copy.png",
             "logo_width": 180,
             "link": "shopify:\/\/collections\/auroom-saunas"
           }
@@ -548,6 +447,7 @@
         "template--21084899246384__34fd6eb7-bcd8-4917-a4df-04389052f938-logo-3": {
           "type": "logo",
           "settings": {
+            "logo": "shopify:\/\/shop_images\/download-2_copy.png",
             "logo_width": 120,
             "link": "shopify:\/\/collections\/haljas"
           }
@@ -555,6 +455,7 @@
         "template--21084899246384__34fd6eb7-bcd8-4917-a4df-04389052f938-logo-4": {
           "type": "logo",
           "settings": {
+            "logo": "shopify:\/\/shop_images\/SaunaLife-Logo-Recolored.png",
             "logo_width": 180,
             "link": "shopify:\/\/collections\/saunalife"
           }
@@ -563,6 +464,7 @@
           "type": "logo",
           "disabled": true,
           "settings": {
+            "logo": "shopify:\/\/shop_images\/unnamed_6c79e175-cc1a-4f22-968f-af3aa8fe273f.png",
             "logo_width": 200,
             "link": ""
           }
@@ -570,6 +472,7 @@
         "e92788da-a84a-4191-bf38-9db9c4c5b3bc": {
           "type": "logo",
           "settings": {
+            "logo": "shopify:\/\/shop_images\/download-1.png",
             "logo_width": 50,
             "link": ""
           }
@@ -632,7 +535,6 @@
     "7f472d5a-90d6-456f-b551-772408df21a6",
     "b18d2745-119a-4b8d-8635-a25b5e1eeb90",
     "blog-posts",
-    "featured_product_VPtRgz",
     "8cc6a23a-995f-4915-86ec-fa4ceb681956",
     "34fd6eb7-bcd8-4917-a4df-04389052f938",
     "76ac4dea-dbf9-443b-90e8-e6e44b7e3431"
