@@ -5,7 +5,13 @@
   <div class="line-item-info">
      <div class="v-stack justify-items-start gap-2">
       <div class="v-stack justify-items-start gap-1">
+        {%- if line_item.url != blank -%}
+          <a href="{{ line_item.url }}" class="{{ text_class }}">
+
+          </a>  
+        {%- else -%}
         
+        {%- endif -%}
       </div>
      </div>
 
