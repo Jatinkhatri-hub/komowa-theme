@@ -19,7 +19,8 @@
           {%  assign current_price = line_item.product.price %}
           
           {% if original_price > current_price %} 
-            {%  assign savings = original_price | minus: current_price %} 
+            {%  assign savings = original_price | minus: current_price %}
+             
           {% endif %}
         </div>
       </div>
