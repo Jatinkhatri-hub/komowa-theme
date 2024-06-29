@@ -8348,4 +8348,6 @@ template#drawer-default-template .button-custom svg {
   overflow-wrap: anywhere;
 }
 
-.line-item
+.line-item__current-price {
+  font-size: ;
+}
