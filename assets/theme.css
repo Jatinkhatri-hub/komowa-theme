@@ -8348,7 +8348,9 @@ template#drawer-default-template .button-custom svg {
   overflow-wrap: anywhere;
 }
 
-
+.line-item__title {
+  font-size: 1.;
+}
 
 .line-item__current-price {
   font-size: 1.125rem;
