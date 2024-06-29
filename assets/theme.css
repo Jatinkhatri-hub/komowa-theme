@@ -8387,5 +8387,5 @@ template#drawer-default-template .button-custom svg {
   background-color: #021D49;
   color: white;
   margin: 0.25rem;
-  
+  border-radius: 4px;
 }
