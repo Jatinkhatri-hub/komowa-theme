@@ -18,7 +18,9 @@
           {%  assign original_price = line_item.product.compare_at_price %}
           {%  assign current_price = line_item.product.price %}
           
-          {% if original_price > current_price %} {% endif %}
+          {% if original_price > current_price %} 
+            {%  assign savings =  %} %}
+          {% endif %}
         </div>
       </div>
      </div>
