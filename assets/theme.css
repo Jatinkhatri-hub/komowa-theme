@@ -8418,6 +8418,9 @@ template#drawer-default-template .button-custom svg {
 }
 
 
+.subtotal-container {
+  border-t
+}
 
 .cart-drawer__subtotal-title {
   color: black;
