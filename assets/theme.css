@@ -8347,3 +8347,5 @@ template#drawer-default-template .button-custom svg {
   text-transform: var(--heading-text-transform);
   overflow-wrap: anywhere;
 }
+
+.line-item
