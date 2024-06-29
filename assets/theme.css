@@ -8421,6 +8421,7 @@ template#drawer-default-template .button-custom svg {
 .subtotal-container {
   border-top: 1px solid rgb(var(--border-color));
   padding-top: 1rem;
+  margin-top: 1rem;
 }
 
 .cart-drawer__subtotal-title {
