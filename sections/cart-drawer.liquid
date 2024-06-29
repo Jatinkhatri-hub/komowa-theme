@@ -1,6 +1,8 @@
 <cart-drawer id="cart-drawer" class="cart-drawer drawer {% if cart.empty? %}drawer--center-body{% endif %}" initial-focus="false" handle-editor-events>
-  <div slot="header">{% render 'icon-cart-bag' %}</div>
-  <p class="h4" slot="header">{{ 'cart.general.title' | t }}</p>
+  <div slot="header">{% render 'icon-cart-bag' %}
+
+    <p class="h4" slot="header">{{ 'cart.general.title' | t }}</p>
+  </div>
 
   {%- if cart.empty? -%}
     <p class="h5 text-center">{{ 'cart.general.empty' | t }}</p>
