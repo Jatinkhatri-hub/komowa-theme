@@ -820,7 +820,9 @@ height-observer {
 }
 
 /* CUSTOM DRAWER CLOSE BUTTON CHANGES */
-:where(.drawer)::part(close-bu)
+:where(.drawer)::part(close-button) {
+  
+}
 
 .modal {
   --background: var(--modal-background);
