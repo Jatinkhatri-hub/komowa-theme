@@ -8359,7 +8359,8 @@ template#drawer-default-template .button-custom svg {
 .line-item__current-price {
   font-size: 1.125rem;
   font-family: 'Futura';
-  font-weight: 600;
+  font-weight: 500;
+  color: black
 }
 
 .line-item__cap {
