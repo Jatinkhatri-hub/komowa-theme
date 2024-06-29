@@ -8421,10 +8421,11 @@ template#drawer-default-template .button-custom svg {
 .payment-option-image__container {
   display: flex;
   justify-content: center;
-  a
+  align-items: center;
 }
 
 .payment-option__image {
   width: 360px;
+  mar
 
 }
