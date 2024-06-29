@@ -8350,7 +8350,7 @@ template#drawer-default-template .button-custom svg {
 
 .line-item__title {
   font-size: 1rem;
-  
+  text-transform: uppercase;
   font-weight: 500;
   color: black;
   line-height: 21px;
