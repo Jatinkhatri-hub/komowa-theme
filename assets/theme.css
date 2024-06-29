@@ -8429,7 +8429,7 @@ template#drawer-default-template .button-custom svg {
   font-weight: 500;
 }
 
-.cart-drawer__subtotal-price {
+.cart-drawer__footer-price {
   font-weight: 600;
 }
 
