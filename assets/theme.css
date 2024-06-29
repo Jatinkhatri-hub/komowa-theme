@@ -965,7 +965,7 @@ height-observer {
   align-content: start;
   padding-block-start: var(--drawer-body-padding-block);
   padding-block-end: var(--drawer-body-padding-block);
-  padding-inline-start: var(--drawer-body-padding-inline);
+  padding-inline-start: /*var(--drawer-body-padding-inline)*/;
   padding-inline-end: 1rem/*var(--drawer-header-padding-inline)*/;
   display: grid;
   overflow-x: hidden;
