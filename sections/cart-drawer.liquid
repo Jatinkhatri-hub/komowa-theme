@@ -37,7 +37,7 @@
                   {%- render 'input', name: 'note', multiline: 3, label: order_note, value: cart.note, placeholder: placeholder, show_label_as_block: true -%}
                 </cart-note>
 
-                <button type="button" class="button" is="dialog-close-button">{{ 'cart.general.save_note' | t }}</button>
+                <button type="button" class="button button-custom" is="dialog-close-button">{{ 'cart.general.save_note' | t }}</button>
               </div>
             </cart-note-dialog>
           {%- endif -%}
