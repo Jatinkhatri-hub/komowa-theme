@@ -821,6 +821,8 @@ height-observer {
 
 /* CUSTOM DRAWER CLOSE BUTTON CHANGES */
 :where(.drawer)::part(close-button) {
+  padding: 0.375rem;
+  background: #000;
   
 }
 
