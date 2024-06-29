@@ -8419,9 +8419,13 @@ template#drawer-default-template .button-custom svg {
 
 
 
-.cart-drawer__subtotal-price, .cart-drawer__subtotal-title {
+.cart-drawer__subtotal-title {
   color: black;
   font-weight: 500;
+}
+
+.cart-drawer__subtotal-price {
+  font
 }
 
 .button-group.custom {
