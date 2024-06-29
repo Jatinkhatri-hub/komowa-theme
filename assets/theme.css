@@ -8340,9 +8340,7 @@ template#drawer-default-template .button-custom svg {
   text-transform: uppercase;
   color: #000;
   font-family: var(--heading-font-family);
-  font-weight: var(--heading-font-weight);
   font-style: var(--heading-font-style);
-  letter-spacing: var(--heading-letter-spacing);
   text-transform: var(--heading-text-transform);
   overflow-wrap: anywhere;
 }
