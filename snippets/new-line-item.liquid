@@ -13,8 +13,8 @@
           <p class="h6">{{ line_item.product.title |  default: line_item.title }}</p>
         {%- endif -%}
         <div class="h-stack align-start gap-2">
-          <span class="line-item__current-price">{{ line_item.product.price }}</span>
-          <span class="line-item__cap">{{ line_item.product.compare_at_price }}</span>
+          <span class="line-item__current-price">{{ line_item.product.price |  money }}</span>
+          <span class="line-item__cap">{{ line_item.product.compare_at_price |  money }}</span>
           {%  assign original_price = line_item.product.compare_at_price %}
           {%  assign current_price = line_item.product.price %}
           
