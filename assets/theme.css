@@ -8399,6 +8399,7 @@ template#drawer-default-template .button-custom svg {
 
 .container__discount-applied {
   border-bottom: 1px solid black;
+  padding-bottom: 1rem;
 }
 
 .discount-text {
