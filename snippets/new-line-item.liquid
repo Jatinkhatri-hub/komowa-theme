@@ -30,7 +30,7 @@
         </div>
         <line-item-quantity class="h-stack gap-4 {% if request.page_type == 'cart' %}sm:hidden{% endif %}">
           {%- render 'new-quantity-selector', line_item: line_item, size: 'sm' -%}
-          <a href="{{ line_item.url_to_remove }}" class="link text-xs">{%  render 'icon-distbin' %}</a>
+          <a href="{{ line_item.url_to_remove }}" class="link text-xs">{%  render 'icon-dustbin' %}</a>
         </line-item-quantity>
       </div>
      </div>
