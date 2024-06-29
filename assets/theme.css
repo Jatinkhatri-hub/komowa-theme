@@ -8359,5 +8359,7 @@ template#drawer-default-template .button-custom svg {
 }
 
 .line-item__save-badge {
+  background-color: #253b80;
+  color: white;
   
 }
