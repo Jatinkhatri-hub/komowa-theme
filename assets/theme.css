@@ -8426,6 +8426,6 @@ template#drawer-default-template .button-custom svg {
 
 .payment-option__image {
   width: 360px;
-  mar
+  margin-inline: auto;
 
 }
