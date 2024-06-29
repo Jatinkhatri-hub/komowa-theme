@@ -941,7 +941,8 @@ height-observer {
   display: grid;
   position: relative;
   border-top-left-radius: 1rem;
-  border-bottom-left-radius: ;
+  border-bottom-left-radius: 1rem;
+  overflow: hidden;
 }
 
 .drawer::part(header) {
