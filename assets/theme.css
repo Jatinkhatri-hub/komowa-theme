@@ -8337,7 +8337,6 @@ template#drawer-default-template .button-custom svg {
 
 .cart-drawer__heading {
   font-size: 29px;
-  text-transform: uppercase;
   color: #000;
   font-family: var(--heading-font-family);
   font-style: var(--heading-font-style);
