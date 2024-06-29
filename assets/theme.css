@@ -8339,6 +8339,7 @@ template#drawer-default-template .button-custom svg {
   font-size: 29px;
   color: #000;
   font-family: var(--heading-font-family);
+  font-weight: 500;
   /* font-style: var(--heading-font-style); */
   text-transform: var(--heading-text-transform);
   overflow-wrap: anywhere;
