@@ -955,7 +955,7 @@ height-observer {
   padding-block-start: var(--drawer-header-padding-block);
   padding-block-end: var(--drawer-header-padding-block);
   padding-inline-start: var(--drawer-header-padding-inline);
-  padding-inline-end: 1rem/*var(--drawer-header-padding-inline)*/;
+  padding-inline-end: var(--drawer-header-padding-inline);
   display: flex;
 }
 
@@ -966,7 +966,7 @@ height-observer {
   padding-block-start: var(--drawer-body-padding-block);
   padding-block-end: var(--drawer-body-padding-block);
   padding-inline-start: var(--drawer-body-padding-inline);
-  padding-inline-end: var(--drawer-body-padding-inline);
+  padding-inline-end: 1rem/*var(--drawer-header-padding-inline)*/;
   display: grid;
   overflow-x: hidden;
   overflow-y: auto;
@@ -8364,5 +8364,5 @@ template#drawer-default-template .button-custom svg {
   font-weight: 600;
   font-size: .94rem;
   padding: 0.25rem;
-
+  
 }
