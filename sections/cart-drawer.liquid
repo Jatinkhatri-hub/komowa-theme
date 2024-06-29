@@ -21,7 +21,7 @@
         {%- render 'new-line-item', line_item: line_item, show_quantity_selector: true -%}
       {%- endfor -%}
     </div>
-    {% if cart.cart_level_discount_applications.size > 0 %}
+    {% comment %} {% if cart.cart_level_discount_applications.size > 0 %}
       <div class="container__discount-applied">
 
       {% for discount_application in cart.cart_level_discount_applications %}
@@ -31,7 +31,7 @@
       {% endfor %}
       </div>
     
-    {% endif %}
+    {% endif %} {% endcomment %}
 
     <form action="{{ routes.cart_url }}" method="POST" class="cart-drawer__footer" slot="footer">
       <input type="hidden" name="attributes[products_mobile_grid_mode]" value="">
@@ -77,11 +77,11 @@
 
         {%- if section.settings.show_checkout_button -%}
           {%- capture checkout_button -%}
-            {% comment %} {{- 'cart.general.checkout' | t -}}
+             {{- 'cart.general.checkout' | t -}}
 
             {%- if section.settings.show_price_in_checkout_button -%}
               <span class="cart-drawer__button-price"><span class="Bold-theme-hook-DO-NOT-DELETE bold_cart_total" style="display:none !important;"></span>{{- cart.total_price | money -}}</span>
-            {%- endif -%} {% endcomment %}
+            {%- endif -%} 
             {% comment %} {% render 'icon-lock' %}
             <span class="cart-drawer__checkout-btn-text">Proceed to secure checkout</span> {% endcomment %}
 
