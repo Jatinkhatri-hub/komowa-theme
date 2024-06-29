@@ -8349,5 +8349,6 @@ template#drawer-default-template .button-custom svg {
 }
 
 .line-item__current-price {
-  font-size: ;
+  font-size: 1.25rem;
 }
+
