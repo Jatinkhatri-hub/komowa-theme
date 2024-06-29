@@ -8398,7 +8398,7 @@ template#drawer-default-template .button-custom svg {
 }
 
 .container__discount-applied {
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid rgb(var(--border-color));
   padding-bottom: 1rem;
 }
 
