@@ -400,7 +400,7 @@ height-observer {
   }
 
   .button-group.custom {
-    
+    gap: 0;
   }
 
   .button-group:has(.link):not(:has(.button)) {
