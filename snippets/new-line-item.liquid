@@ -7,7 +7,7 @@
       <div class="v-stack justify-items-start gap-1">
         {%- if line_item.url != blank -%}
           <a href="{{ line_item.url }}" class="{{ text_class }}">
-            {{ line_item. }}
+            {{ line_item.product.title |  default: line_item }}
           </a>  
         {%- else -%}
 
