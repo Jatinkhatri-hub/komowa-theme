@@ -8424,7 +8424,7 @@ template#drawer-default-template .button-custom svg {
   margin-top: 1rem;
 }
 
-.cart-drawer__subtotal-title {
+.cart-drawer__footer-title {
   color: black;
   font-weight: 500;
 }
