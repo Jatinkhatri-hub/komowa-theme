@@ -77,13 +77,13 @@
 
         {%- if section.settings.show_checkout_button -%}
           {%- capture checkout_button -%}
-             {{- 'cart.general.checkout' | t -}}
+             {% comment %} {{- 'cart.general.checkout' | t -}}
 
             {%- if section.settings.show_price_in_checkout_button -%}
               <span class="cart-drawer__button-price"><span class="Bold-theme-hook-DO-NOT-DELETE bold_cart_total" style="display:none !important;"></span>{{- cart.total_price | money -}}</span>
-            {%- endif -%} 
-            {% comment %} {% render 'icon-lock' %}
-            <span class="cart-drawer__checkout-btn-text">Proceed to secure checkout</span> {% endcomment %}
+            {%- endif -%}  {% endcomment %}
+             {% render 'icon-lock' %}
+            <span class="cart-drawer__checkout-btn-text">Proceed to secure checkout</span>
 
           {%- endcapture -%}
 
