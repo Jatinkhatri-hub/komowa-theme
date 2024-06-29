@@ -67,7 +67,7 @@
           , width: 10 -%}
       </button>
     {%- else -%}
-      <a href="{{ routes.cart_change_url }}?id={{ line_item.key }}&quantity={{ line_item.quantity | plus: 1 }}" class="quantity-selector__button">
+      <a href="{{ routes.cart_change_url }}?id={{ line_item.key }}&quantity={{ line_item.quantity | plus: 1 }}" class="quantity-selector__button custom-button">
         <span class="sr-only">{{ 'product.quantity.increase_quantity' | t }}</span>
         {%- render 'icon' with 'plus'
           , width: 10 -%}
