@@ -8413,7 +8413,9 @@ template#drawer-default-template .button-custom svg {
   text-transform: uppercase;
 }
 
-.button-group
+.button-group.custom {
+  gap: 0;
+}
 
 .cart-drawer__checkout-btn-text {
   font-size: 1.25rem;
