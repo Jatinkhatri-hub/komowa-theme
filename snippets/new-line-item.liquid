@@ -29,7 +29,9 @@
           
         </div>
         <line-item-quantity class="h-stack gap-4 justify-between {% if request.page_type == 'cart' %}sm:hidden{% endif %}">
+          <div>
           {%- render 'new-quantity-selector', line_item: line_item, size: 'sm' -%}
+          </div>
           <div>
           <a href="{{ line_item.url_to_remove }}" class="link text-xs">{%  render 'icon-dustbin' %}</a>
           </div>
