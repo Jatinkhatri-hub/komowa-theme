@@ -8379,7 +8379,8 @@ template#drawer-default-template .button-custom svg {
 }
 
 .line-item__custom-quantity-selector {
-  
+  display: flex;
+  aline
 }
 
 .custom-selector {
