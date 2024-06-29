@@ -8350,10 +8350,10 @@ template#drawer-default-template .button-custom svg {
 
 .line-item__title {
   font-size: 1rem;
-  font-family: 'Fututra';
+  
   font-weight: 500;
   color: black;
-  line-height: ;
+  line-height: 21px;
 }
 
 .line-item__current-price {
