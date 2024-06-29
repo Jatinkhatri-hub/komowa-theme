@@ -8298,12 +8298,23 @@ button.button.checkout-btn {
 }
 
 /* CUSTOM CART STYLES */
-
+/* 
 .button-custom {
   padding: .375rem;
   background-color: black;
 }
 
 .button-custom svg {
-  back
+  color: white;
+} */
+
+
+
+template#drawer-default-template .button-custom {
+  padding: .375rem;
+  background-color: black;
+}
+
+template#drawer-default-template .button-custom svg {
+  color: white;
 }
