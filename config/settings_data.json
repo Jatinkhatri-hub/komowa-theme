@@ -1,1 +1,143 @@
-{"current":{"icon_stroke_width":1.5,"section_vertical_spacing":"xs","button_border_radius":30,"input_border_radius":30,"text_color":"#1c1c1c","background":"#fff","secondary_background":"#ffffff","success_color":"#307a07","error_color":"#cb2b2b","header_background":"#ffffff","header_text_color":"#1c1c1c","footer_background":"#000000","footer_text_color":"#ffffff","primary_button_background":"#253b80","primary_button_text_color":"#ffffff","modal_background":"#ffffff","modal_text_color":"#303030","product_rating_color":"#fbcd0a","product_on_sale_accent":"#1c1c1c","heading_font":"futura_n7","heading_text_transform":"uppercase","heading_font_size_factor":1,"heading_letter_spacing":18,"text_font":"helvetica_n4","text_font_size_mobile":18,"text_font_size_desktop":18,"button_text_font":"heading","button_letter_spacing":18,"show_button_transition":false,"stagger_products_apparition":false,"stagger_blog_posts_apparition":false,"product_image_aspect_ratio":"short","show_secondary_image":true,"show_vendor":false,"product_title_max_lines":3,"product_card_text_font":"heading","show_quick_buy":false,"show_discount":true,"cart_type":"drawer","cart_icon":"shopping_bag_sharp","cart_show_free_shipping_bar":false,"social_twitter":"https:\/\/twitter.com\/KomowaWellness","social_instagram":"https:\/\/www.instagram.com\/komowawellness\/","social_youtube":"https:\/\/www.youtube.com\/channel\/UC7bhhjJbOZMOtDLXXEcM89w","social_tiktok":"https:\/\/www.tiktok.com\/@komowahealth?is_from_webapp=1&sender_device=pc","favicon":"shopify:\/\/shop_images\/IMAGE_2023-09-16_21_16_55_659a1f07-baad-46e6-8478-83b381aceed2.png","checkout_logo_image":"shopify:\/\/shop_images\/Group_1_3.png","checkout_logo_position":"center","checkout_logo_size":"small","heading_color":"#5c5c5c","content_for_index":[],"blocks":{"855628211100114053":{"type":"shopify:\/\/apps\/klaviyo-email-marketing-sms\/blocks\/klaviyo-onsite-embed\/2632fe16-c075-4321-a88b-50b567f42507","disabled":false,"settings":{}},"14327677521557774844":{"type":"shopify:\/\/apps\/simprosys-google-shopping-feed\/blocks\/core_settings_block\/1f0b859e-9fa6-4007-97e8-4513aff5ff3b","disabled":false,"settings":{}},"15623156175785154009":{"type":"shopify:\/\/apps\/qikify-smart-menu-mega-menu\/blocks\/app-embed\/19d2f1cd-1836-4a32-8937-03df3c601dc8","disabled":false,"settings":{}},"14060646107696862457":{"type":"shopify:\/\/apps\/judge-me-reviews\/blocks\/judgeme_core\/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8","disabled":false,"settings":{}},"6146500278089136509":{"type":"shopify:\/\/apps\/bm-country-blocker-ip-blocker\/blocks\/boostmark-blocker\/bf9db4b9-be4b-45e1-8127-bbcc07d93e7e","disabled":false,"settings":{}},"6143736321357441667":{"type":"shopify:\/\/apps\/tidio-live-chat-chatbots\/blocks\/app-embed\/1002274d-fb18-4939-98f6-5f05a8deeadc","disabled":false,"settings":{}}}},"presets":{"Allure":{"section_vertical_spacing":"md","heading_color":"#1c1c1c","text_color":"#1c1c1c","background":"#efefef","secondary_background":"#ffffff","success_color":"#307a07","error_color":"#cb2b2b","header_background":"#ffffff","header_text_color":"#1c1c1c","footer_background":"#ffffff","footer_text_color":"#1c1c1c","modal_background":"#ffffff","modal_text_color":"#1c1c1c","primary_button_background":"#1c1c1c","primary_button_text_color":"#ffffff","product_rating_color":"#1c1c1c","heading_font":"univers_next_n4","heading_letter_spacing":18,"text_font":"univers_next_n4","text_font_size_desktop":14,"button_letter_spacing":18},"Couture":{"section_vertical_spacing":"md","heading_color":"#5c5c5c","text_color":"#5c5c5c","background":"#ffffff","secondary_background":"#ffffff","success_color":"#307a07","error_color":"#cb2b2b","header_background":"#ffffff","header_text_color":"#303030","footer_background":"#ffffff","footer_text_color":"#303030","modal_background":"#ffffff","modal_text_color":"#303030","primary_button_background":"#5c5c5c","primary_button_text_color":"#ffffff","product_rating_color":"#1c1c1c","heading_font":"futura_n4","heading_letter_spacing":18,"text_font":"century_gothic_n4","text_font_size_desktop":14,"button_letter_spacing":18},"Vogue":{"section_vertical_spacing":"xs","heading_color":"#303030","text_color":"#303030","background":"#ffffff","secondary_background":"#ffffff","success_color":"#307a07","error_color":"#cb2b2b","header_background":"#ffffff","header_text_color":"#303030","footer_background":"#ffffff","footer_text_color":"#303030","modal_background":"#ffffff","modal_text_color":"#303030","primary_button_background":"#f5db8b","primary_button_text_color":"#303030","product_rating_color":"#1c1c1c","heading_font":"din_neuzeit_grotesk_n3","heading_letter_spacing":18,"text_font":"futura_n4","text_font_size_desktop":14,"button_letter_spacing":18}},"platform_customizations":{"custom_css":["h3 {font-size: 40px;}",".tmenu_submenu span.tmenu_item_text {color: #000 !important;}"]}}
+/*
+* ------------------------------------------------------------
+* IMPORTANT: The contents of this file are auto-generated.
+*
+* This file may be updated by the Shopify admin theme editor
+* or related systems. Please exercise caution as any changes
+* made to this file may be overwritten.
+* ------------------------------------------------------------
+*/
+{
+  "current": {
+    "icon_stroke_width": 1.5,
+    "section_vertical_spacing": "xs",
+    "button_border_radius": 30,
+    "input_border_radius": 30,
+    "text_color": "#1c1c1c",
+    "background": "#fff",
+    "secondary_background": "#ffffff",
+    "success_color": "#307a07",
+    "error_color": "#cb2b2b",
+    "header_background": "#ffffff",
+    "header_text_color": "#1c1c1c",
+    "footer_background": "#000000",
+    "footer_text_color": "#ffffff",
+    "primary_button_background": "#253b80",
+    "primary_button_text_color": "#ffffff",
+    "modal_background": "#ffffff",
+    "modal_text_color": "#303030",
+    "product_rating_color": "#fbcd0a",
+    "product_on_sale_accent": "#1c1c1c",
+    "heading_font": "futura_n7",
+    "heading_text_transform": "uppercase",
+    "heading_font_size_factor": 1,
+    "heading_letter_spacing": 18,
+    "text_font": "futura_n4",
+    "text_font_size_mobile": 18,
+    "text_font_size_desktop": 18,
+    "button_text_font": "heading",
+    "button_letter_spacing": 18,
+    "show_button_transition": false,
+    "stagger_products_apparition": false,
+    "stagger_blog_posts_apparition": false,
+    "product_image_aspect_ratio": "short",
+    "show_secondary_image": true,
+    "show_vendor": false,
+    "product_title_max_lines": 3,
+    "product_card_text_font": "heading",
+    "show_quick_buy": false,
+    "show_discount": true,
+    "cart_type": "drawer",
+    "cart_icon": "shopping_bag_sharp",
+    "cart_show_free_shipping_bar": false,
+    "social_twitter": "https:\/\/twitter.com\/KomowaWellness",
+    "social_instagram": "https:\/\/www.instagram.com\/komowawellness\/",
+    "social_youtube": "https:\/\/www.youtube.com\/channel\/UC7bhhjJbOZMOtDLXXEcM89w",
+    "social_tiktok": "https:\/\/www.tiktok.com\/@komowahealth?is_from_webapp=1&sender_device=pc",
+    "favicon": "shopify:\/\/shop_images\/IMAGE_2023-09-16_21_16_55_659a1f07-baad-46e6-8478-83b381aceed2.png",
+    "checkout_logo_image": "shopify:\/\/shop_images\/Group_1_3.png",
+    "checkout_logo_position": "center",
+    "checkout_logo_size": "small",
+    "heading_color": "#5c5c5c",
+    "content_for_index": [
+
+    ]
+  },
+  "presets": {
+    "Allure": {
+      "section_vertical_spacing": "md",
+      "heading_color": "#1c1c1c",
+      "text_color": "#1c1c1c",
+      "background": "#efefef",
+      "secondary_background": "#ffffff",
+      "success_color": "#307a07",
+      "error_color": "#cb2b2b",
+      "header_background": "#ffffff",
+      "header_text_color": "#1c1c1c",
+      "footer_background": "#ffffff",
+      "footer_text_color": "#1c1c1c",
+      "modal_background": "#ffffff",
+      "modal_text_color": "#1c1c1c",
+      "primary_button_background": "#1c1c1c",
+      "primary_button_text_color": "#ffffff",
+      "product_rating_color": "#1c1c1c",
+      "heading_font": "univers_next_n4",
+      "heading_letter_spacing": 18,
+      "text_font": "univers_next_n4",
+      "text_font_size_desktop": 14,
+      "button_letter_spacing": 18
+    },
+    "Couture": {
+      "section_vertical_spacing": "md",
+      "heading_color": "#5c5c5c",
+      "text_color": "#5c5c5c",
+      "background": "#ffffff",
+      "secondary_background": "#ffffff",
+      "success_color": "#307a07",
+      "error_color": "#cb2b2b",
+      "header_background": "#ffffff",
+      "header_text_color": "#303030",
+      "footer_background": "#ffffff",
+      "footer_text_color": "#303030",
+      "modal_background": "#ffffff",
+      "modal_text_color": "#303030",
+      "primary_button_background": "#5c5c5c",
+      "primary_button_text_color": "#ffffff",
+      "product_rating_color": "#1c1c1c",
+      "heading_font": "futura_n4",
+      "heading_letter_spacing": 18,
+      "text_font": "century_gothic_n4",
+      "text_font_size_desktop": 14,
+      "button_letter_spacing": 18
+    },
+    "Vogue": {
+      "section_vertical_spacing": "xs",
+      "heading_color": "#303030",
+      "text_color": "#303030",
+      "background": "#ffffff",
+      "secondary_background": "#ffffff",
+      "success_color": "#307a07",
+      "error_color": "#cb2b2b",
+      "header_background": "#ffffff",
+      "header_text_color": "#303030",
+      "footer_background": "#ffffff",
+      "footer_text_color": "#303030",
+      "modal_background": "#ffffff",
+      "modal_text_color": "#303030",
+      "primary_button_background": "#f5db8b",
+      "primary_button_text_color": "#303030",
+      "product_rating_color": "#1c1c1c",
+      "heading_font": "din_neuzeit_grotesk_n3",
+      "heading_letter_spacing": 18,
+      "text_font": "futura_n4",
+      "text_font_size_desktop": 14,
+      "button_letter_spacing": 18
+    }
+  },
+  "platform_customizations": {
+    "custom_css": [
+      "h3 {font-size: 40px;}",
+      ".tmenu_submenu span.tmenu_item_text {color: #000 !important;}"
+    ]
+  }
+}
