@@ -8397,7 +8397,9 @@ template#drawer-default-template .button-custom svg {
   border-radius: 4px;
 }
 
-.container
+.container__discount-applied {
+  border-bottom: ;
+}
 
 .discount-text {
   background: #253b80;
