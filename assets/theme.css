@@ -8352,7 +8352,8 @@ template#drawer-default-template .button-custom svg {
   font-size: 1rem;
   font-family: 'Fututra';
   font-weight: 500;
-  font
+  color: black;
+  line-height: ;
 }
 
 .line-item__current-price {
