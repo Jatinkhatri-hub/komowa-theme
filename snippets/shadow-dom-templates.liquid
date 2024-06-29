@@ -24,7 +24,7 @@ user attention. A drawer opens using a slide effect (on desktop) from left or ri
       <header part="header">
         <slot name="header"></slot>
 
-        <button type="button" is="dialog-close-button" part="close-button tap-area" aria-label="{{ 'general.accessibility.close' | t | escape }}">
+        <button type="button" is="dialog-close-button" class part="close-button tap-area" aria-label="{{ 'general.accessibility.close' | t | escape }}">
           {%- render 'icon' with 'close', width: 14 -%}
         </button>
       </header>
