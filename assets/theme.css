@@ -825,6 +825,7 @@ height-observer {
   background: #000;
   color: white;
   border-radius: 50%;
+  overflow: hidden;
 }
 
 .modal {
