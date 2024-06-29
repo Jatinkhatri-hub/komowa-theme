@@ -977,8 +977,8 @@ height-observer {
   border-block-start: 1px solid rgb(var(--border-color));
   padding-block-start: var(--drawer-footer-padding-block);
   padding-block-end: var(--drawer-footer-padding-block);
-  padding-inline-start: var(--drawer-footer-padding-inline);
-  padding-inline-end: var(--drawer-footer-padding-inline);
+  padding-inline-start: 1rem/*var(--drawer-body-padding-inline)*/;
+  padding-inline-end: 1rem/*var(--drawer-header-padding-inline)*/;
 }
 
 .drawer--sm {
