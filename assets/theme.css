@@ -8332,4 +8332,5 @@ template#drawer-default-template .button-custom svg {
   display: flex;
   flex-direction: row;
   gap: 0.125rem;
+  align-items: center;
 }
