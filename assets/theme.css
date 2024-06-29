@@ -819,6 +819,8 @@ height-observer {
   inset: -.65rem;
 }
 
+?
+
 .modal {
   --background: var(--modal-background);
   --text-color: var(--modal-text);
