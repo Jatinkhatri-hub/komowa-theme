@@ -8419,9 +8419,6 @@ template#drawer-default-template .button-custom svg {
 }
 
 .payment-option-image__container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   width: 100%;
 }
 
