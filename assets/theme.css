@@ -8376,5 +8376,8 @@ template#drawer-default-template .button-custom svg {
   font-size: .94rem;
   padding: 0.125rem .5rem;
   border-radius: 6px;
+}
+
+.custom-selector {
   
 }
