@@ -8349,7 +8349,7 @@ template#drawer-default-template .button-custom svg {
 }
 
 .line-item__current-price {
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   font-family: 'Futura';
 }
 
@@ -8362,5 +8362,5 @@ template#drawer-default-template .button-custom svg {
   background-color: #253b80;
   color: white;
   font-weight: 600;
-  font-size: .94px;
+  font-size: .94rem;
 }
