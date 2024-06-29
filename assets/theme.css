@@ -8422,6 +8422,7 @@ template#drawer-default-template .button-custom svg {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
 
 .payment-option__image {
