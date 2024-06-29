@@ -21,7 +21,9 @@
         {%- render 'new-line-item', line_item: line_item, show_quantity_selector: true -%}
       {%- endfor -%}
     </div>
+    {% if cart.cart_level_discount_applications.size > 0 %}
     
+    {% endif %}
     <div class="container__discount-applied">
       <span></span>
     </div>
