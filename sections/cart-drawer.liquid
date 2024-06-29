@@ -18,7 +18,7 @@
       <input type="hidden" name="updates[]" id="updates_{{- line_item.key -}}" class="bold_hidden_input cart__product-qty" value="{{- line_item.quantity -}}" min="0" data-id="{{- line_item.key -}}">
       {%- continue -%}
   {%- endif -%}
-        {%- render 'line-item', line_item: line_item, show_quantity_selector: true -%}
+        {%- render 'new-line-item', line_item: line_item, show_quantity_selector: true -%}
       {%- endfor -%}
     </div>
 
