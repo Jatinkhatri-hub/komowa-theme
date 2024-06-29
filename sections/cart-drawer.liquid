@@ -24,10 +24,11 @@
     {% if cart.cart_level_discount_applications.size > 0 %}
       <div class="container__discount-applied">
 
-      
+      {% for discount_application in cart.cart_level_discount_applications %}
         <div class="discount-text">
-
+          
         </div>
+      {% endfor %}
       </div>
     
     {% endif %}
