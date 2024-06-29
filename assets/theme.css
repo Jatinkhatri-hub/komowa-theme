@@ -8415,6 +8415,7 @@ template#drawer-default-template .button-custom svg {
 
 .cart-drawer__checkout-btn-text {
   font-size: 17px;
+  letter-spacing: normal;
 }
 
 
