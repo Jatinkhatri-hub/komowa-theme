@@ -8363,6 +8363,7 @@ template#drawer-default-template .button-custom svg {
   color: white;
   font-weight: 600;
   font-size: .94rem;
-  padding: 0.25rem;
+  padding: 0.125rem .5rem;
+  border-radius: ;
   
 }
