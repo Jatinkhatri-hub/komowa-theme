@@ -28,7 +28,7 @@
           {% endif %}
           
         </div>
-        <line-item-quantity class="h-stack gap-16 justify-between {% if request.page_type == 'cart' %}sm:hidden{% endif %}">
+        <line-item-quantity class=" {% if request.page_type == 'cart' %}sm:hidden{% endif %}">
           <div>
           {%- render 'new-quantity-selector', line_item: line_item, size: 'sm' -%}
           </div>
