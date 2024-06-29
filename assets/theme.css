@@ -8338,5 +8338,5 @@ template#drawer-default-template .button-custom svg {
 .cart-drawer__heading {
   font-size: 29px;
   text-transform: capitalize;
-  
+  color: #000;
 }
