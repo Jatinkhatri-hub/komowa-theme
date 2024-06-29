@@ -67,7 +67,7 @@
           <span class="discount-badge text-xs">{%- render 'icon' with 'discount', width: 12 -%} {{- discount_application.title -}}</span>
           <span class="text-subdued">-{{ discount_application.total_allocated_amount | money }}</span>
         </div> {% endcomment %}
-        <div class="h-stack justify-between subtotal-container" style="width: 100%;">
+        <div class="h-stack justify-between" style="width: 100%;">
         <span class="cart-drawer__footer-title">Savings:</span>
         <span class="cart-drawer__footer-price">{{ discount_application.total_allocated_amount |  money }}</span>
       </div>
