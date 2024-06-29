@@ -820,7 +820,7 @@ height-observer {
 }
 
 /* CUSTOM DRAWER CLOSE BUTTON CHANGES */
-
+:where(.drawer)::part(tap)
 
 .modal {
   --background: var(--modal-background);
