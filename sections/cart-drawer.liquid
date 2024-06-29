@@ -77,11 +77,11 @@
 
         {%- if section.settings.show_checkout_button -%}
           {%- capture checkout_button -%}
-            {{- 'cart.general.checkout' | t -}}
+            {% comment %} {{- 'cart.general.checkout' | t -}}
 
             {%- if section.settings.show_price_in_checkout_button -%}
               <span class="cart-drawer__button-price"><span class="Bold-theme-hook-DO-NOT-DELETE bold_cart_total" style="display:none !important;"></span>{{- cart.total_price | money -}}</span>
-            {%- endif -%}
+            {%- endif -%} {% endcomment %}
           {%- endcapture -%}
 
           {%- render 'button', type: 'submit', content: checkout_button, name: 'checkout', stretch: true -%}
