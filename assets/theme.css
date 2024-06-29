@@ -8410,7 +8410,7 @@ template#drawer-default-template .button-custom svg {
   font-size: 1.125rem;
   border-radius: 8px;
   font-weight: 500;
-
+  text-transform: uppercase;
 }
 
 
