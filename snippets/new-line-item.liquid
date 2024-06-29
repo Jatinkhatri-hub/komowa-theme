@@ -20,7 +20,7 @@
           
           {% if original_price > current_price %} 
             {%  assign savings = original_price | minus: current_price %}
-            {%  assign savings_percentage =  %}  
+            {%  assign savings_percentage = savings | times: 100 %}  
           {% endif %}
         </div>
       </div>
