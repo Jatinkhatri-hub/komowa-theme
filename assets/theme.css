@@ -8467,7 +8467,9 @@ template#drawer-default-template .button-custom svg {
 
 @media screen and (max-width: 769px) {
 
-  .review
+  .review-image {
+    width: 150px;
+  }
   
   .line-item__current-price {
     font-size: .85rem;
