@@ -5,7 +5,7 @@
   </div>
   {% if section.settings.review_image != blank %}
   <div class="container__review-image" slot="header">
-    <img src="{{ 'cart-review-img.png' |  asset_url }}" class="review-image">
+    <img src="{{ section.settings.review_image |  img_url: 'medium' }}" class="review-image">
   </div>
   {% endif %}
 
