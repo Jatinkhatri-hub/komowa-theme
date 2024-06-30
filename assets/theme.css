@@ -8468,7 +8468,7 @@ template#drawer-default-template .button-custom svg {
 @media screen and (max-width: 769px) {
 
   .review-image {
-    width: 13px;
+    width: 130px;
   }
   
   .line-item__current-price {
@@ -8486,4 +8486,6 @@ template#drawer-default-template .button-custom svg {
   .discount-text {
     font-size: .8rem;
   }
+
+  .cart-d
 }
