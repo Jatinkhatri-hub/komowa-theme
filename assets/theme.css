@@ -8478,8 +8478,8 @@ template#drawer-default-template .button-custom svg {
   .line-item__save-badge {
     font-size: .85rem;
   }
-  
-  .discount-badge {
+
+  .discount-text {
     font-size: .8rem;
   }
 }
