@@ -8487,5 +8487,7 @@ template#drawer-default-template .button-custom svg {
     font-size: .8rem;
   }
 
-  .cart-d
+  .cart-drawer__checkout-btn-text {
+    font-size: em;
+  }
 }
