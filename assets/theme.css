@@ -8475,5 +8475,7 @@ template#drawer-default-template .button-custom svg {
     font-size: 1rem;
   }
   
-  .line
+  .line-item__save-badge {
+    font-size: ;
+  }
 }
