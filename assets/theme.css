@@ -8468,6 +8468,8 @@ template#drawer-default-template .button-custom svg {
 @media screen and (max-width: 769px) {
   
   .line-item__current-price {
-    font-size: ;
+    font-size: 1rem;
   }
+
+  
 }
