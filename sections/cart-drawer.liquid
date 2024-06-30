@@ -3,9 +3,11 @@
     {% render 'icon-cart-bag' %}
     <p class="cart-drawer__heading" >{{ 'cart.general.title' | t }}</p>
   </div>
+  {% if section.settings.review_image != blank %}
   <div class="container__review-image" slot="header">
     <img src="{{ 'cart-review-img.png' |  asset_url }}" class="review-image">
   </div>
+  {% endif %}
 
   {%- if cart.empty? -%}
     <p class="h5 text-center">{{ 'cart.general.empty' | t }}</p>
