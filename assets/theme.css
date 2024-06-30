@@ -8488,6 +8488,6 @@ template#drawer-default-template .button-custom svg {
   }
 
   .cart-drawer__checkout-btn-text {
-    font-size: em;
+    font-size: .85rem;
   }
 }
