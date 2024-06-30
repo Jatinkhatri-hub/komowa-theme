@@ -8493,6 +8493,7 @@ template#drawer-default-template .button-custom svg {
   }
 
   .button-group.custom svg {
-    width: 
+    width: 14px;
+    height: 20px;
   }
 }
