@@ -8491,4 +8491,8 @@ template#drawer-default-template .button-custom svg {
     font-size: .775rem;
     font-weight: 500;
   }
+
+  .button-group.custom svg {
+    width: 
+  }
 }
