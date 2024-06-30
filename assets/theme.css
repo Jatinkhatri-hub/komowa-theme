@@ -8468,14 +8468,14 @@ template#drawer-default-template .button-custom svg {
 @media screen and (max-width: 769px) {
   
   .line-item__current-price {
-    font-size: 1rem;
+    font-size: .85rem;
   }
 
   .line-item__cap {
-    font-size: 1rem;
+    font-size: .85rem;
   }
   
   .line-item__save-badge {
-    font-size: .725rem;
+    font-size: .85rem;
   }
 }
