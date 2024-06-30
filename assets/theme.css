@@ -8352,7 +8352,9 @@ template#drawer-default-template .button-custom svg {
   overflow-wrap: anywhere;
 }
 
-.re
+.review-image {
+  width: 200px;
+}
 
 .line-item__title {
   font-size: 1rem;
@@ -8462,3 +8464,5 @@ template#drawer-default-template .button-custom svg {
   margin-inline: auto;
 
 }
+
+@medis
