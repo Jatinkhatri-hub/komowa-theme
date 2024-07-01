@@ -31,7 +31,7 @@
 
       {% for discount_application in cart.cart_level_discount_applications %}
         <div class="discount-text">
-          <p>You are saving {{ discount_application.total_allocated_amount |  money }} with {{ discount_application.title }}</p>
+          <p>You are saving <span style="font-weight: 600;">{{ discount_application.total_allocated_amount |  money }}</span> with {{ discount_application.title }}</p>
         </div>
       {% endfor %}
       </div>
