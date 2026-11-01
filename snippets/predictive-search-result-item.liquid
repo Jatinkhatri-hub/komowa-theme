@@ -18,11 +18,7 @@ Supported variables
   {%- when 'product' -%}
     <div class="md-max:hidden">
       {%- if product.metafields.inventory.ShappifyHidden == 'true' -%}{%- continue -%}{%- endif -%}
-      {%- render 'product-card', product: product, show_quick_buy: false -%
-    </div>
-
-    <div class="md:hidden">
-      {%- render 'product-card-horizontal', product: product, show_quick_buy: false -%}
+      {%- render 'product-card', product: product, show_quick_buy: false, md: hidden -%}
     </div>
 
   {%- when 'query' -%}
@@ -46,4 +42,19 @@ Supported variables
     <div>
       <a href="{{ page.url }}" class="link-reverse" data-instant>{{ page.title }}</a>
     </div>
-{%- endcase -%}
+{%- endcase -%}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: |-
+    {%- render 'product-card', product: product, show_quick_buy: false -%
+        </div>
+
+        <div class="md:hidden">
+          {%- render 'product-card-horizontal', product: product, show_quick_buy: false -%}
+  to: "{%- render 'product-card', product: product, show_quick_buy: false, md: hidden
+    -%}"
+  position: 1012..1094
+{%- endcomment -%}
